@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Психолог вашей беременности и материнства — Айпери Сатыбалдиева." />
-    <title>Айпери Сатыбалдиева — перинатальный психолог</title>
+    <title>Айпери Сатыбалдиева — Перинатальный психолог</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,67 +13,114 @@
       rel="stylesheet"
     />
 
-    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-              display: ["Cormorant Garamond", "ui-serif", "Georgia", "serif"],
+              sans: ["Inter", "sans-serif"], // Основной шрифт (для текстов, списков, кнопок)
+              display: ["Cormorant Garamond", "serif"], // Курсивный шрифт (для заголовков, ФИО, цитат)
             },
             boxShadow: {
-              soft: "0 10px 30px rgba(88, 28, 135, 0.10)",
+              soft: "0 10px 30px rgba(88, 28, 135, 0.08)",
             },
+            colors: {
+              // Строгая палитра по вашему запросу
+              pastel: {
+                purple: "#faf5ff", // bg-purple-50 (лавандовый)
+                pink: "#fdf2f8",   // bg-pink-50 (нежно-розовый)
+                green: "#d1fae5",  // bg-emerald-100 (пастельно-зеленый для кнопок)
+                greenDark: "#064e3b", // text-emerald-900 (текст на кнопках)
+                greenBorder: "#a7f3d0", // border кнопок
+              }
+            }
           },
         },
       };
     </script>
 
-    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      referrerpolicy="no-referrer"
     />
 
     <style>
-      html:focus-within {
-        scroll-behavior: smooth;
+      html { scroll-behavior: smooth; }
+      
+      /* Плавное появление элементов */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .reveal.is-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .hover-lift:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 40px rgba(88, 28, 135, 0.12);
+      }
+
+      /* Единый размер превью дипломов/сертификатов */
+      .cert-frame {
+        aspect-ratio: 3 / 4;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #fff;
+        border-radius: 0.75rem;
+        border: 1px solid rgb(243 232 255);
+        box-shadow: 0 10px 30px rgba(88, 28, 135, 0.08);
+        padding: 0.5rem;
+      }
+      .cert-frame img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
+      /* 1-й диплом: 90° по часовой + масштаб, чтобы не обрезалось */
+      .cert-frame img.cert-diploma-1 {
+        transform: rotate(90deg) scale(0.68);
+        max-width: 100%;
+        max-height: 100%;
+      }
+      /* 4-й диплом:90° + уменьшение масштаба */
+      .cert-frame img.cert-diploma-4 {
+        transform: rotate(90deg) scale(0.68);
+        max-width: 100%;
+        max-height: 100%;
       }
 
       :root {
-        --hero-bg: 245 243 255; /* fallback close to purple-50 */
-        --tint-lavender: 243 232 255;
-        --tint-blush: 252 231 243;
+        --hero-overlay: 250 245 255; /* fallback lavender */
       }
     </style>
   </head>
 
-  <body class="text-gray-800 antialiased" style="background-color: rgb(var(--tint-lavender) / 0.35)">
-    <a
-      href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-soft"
-    >
-      Перейти к содержимому
-    </a>
-
-    <!-- Header -->
-    <header class="sticky top-0 z-40 border-b border-purple-100/70 bg-purple-50/80 backdrop-blur">
+  <body class="text-gray-800 antialiased font-sans bg-pastel-purple">
+    
+    <header class="sticky top-0 z-50 bg-pastel-purple/90 backdrop-blur-md border-b border-purple-100">
       <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <div class="flex items-center justify-center gap-3 sm:justify-start">
-          <div class="grid h-9 w-9 place-items-center rounded-xl bg-white shadow-soft">
-            <i class="fa-solid fa-heart text-purple-600" aria-hidden="true"></i>
-          </div>
-          <div class="text-center text-sm font-medium text-gray-700 sm:text-left">
+          <i class="fa-solid fa-heart text-pink-400 text-xl" aria-hidden="true"></i>
+          <div class="text-center text-sm font-medium text-gray-700 sm:text-left font-sans">
             Психолог вашей беременности и материнства
           </div>
         </div>
 
         <div class="flex items-center justify-center sm:justify-end">
           <a
-            class="inline-flex items-center gap-2 rounded-2xl bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-900 shadow-soft ring-1 ring-emerald-200/70 transition hover:bg-emerald-200/70 focus:outline-none focus:ring-2 focus:ring-emerald-200"
+            class="inline-flex items-center gap-2 rounded-full bg-pastel-green px-5 py-2 text-sm font-semibold text-pastel-greenDark shadow-sm ring-1 ring-pastel-greenBorder transition hover:bg-green-200 hover-lift"
             href="mailto:satybaldieva0312@gmail.com"
           >
             <i class="fa-solid fa-envelope" aria-hidden="true"></i>
@@ -84,562 +130,520 @@
       </div>
     </header>
 
-    <main id="main">
-      <!-- Hero -->
-      <section class="relative overflow-hidden" style="background-color: rgb(var(--hero-bg) / 1)">
-        <div class="pointer-events-none absolute inset-0 -z-10">
-          <div class="absolute -left-24 -top-24 h-72 w-72 rounded-full blur-3xl" style="background-color: rgb(var(--tint-lavender) / 0.55)"></div>
-          <div class="absolute -right-24 top-24 h-72 w-72 rounded-full blur-3xl" style="background-color: rgb(var(--tint-blush) / 0.55)"></div>
+    <main>
+      <!-- Hero Section #1 (w-full) -->
+      <section id="reveal" class="relative w-full overflow-hidden bg-pastel-purple py-24 lg:py-36 reveal">
+        <!-- Hidden image for palette script (no visible background) -->
+        <img id="hero-photo" src="Aiperi_main_photo.jpg" alt="" aria-hidden="true" class="hidden" />
+        <div class="relative z-10 mx-auto max-w-6xl px-4 text-center sm:px-6">
+          <h1 class="font-display italic text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
+            Айпери Сатыбалдиева
+          </h1>
+          <h2 class="mt-4 font-display italic text-3xl font-medium text-gray-800 sm:text-4xl">
+            Перинатальный психолог
+          </h2>
+          <p class="mt-6 font-sans text-lg font-medium text-gray-700 sm:text-xl">
+            Путь к мечте: бережно, вместе.
+          </p>
         </div>
+      </section>
 
-        <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
-          <div class="grid items-center gap-10 lg:grid-cols-2">
-            <div class="order-2 text-center lg:order-1 lg:text-left">
-              <div class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-semibold text-gray-700 shadow-soft ring-1 ring-purple-100">
-                <i class="fa-solid fa-shield-heart text-purple-600" aria-hidden="true"></i>
-                Спокойно. Бережно. Без осуждения.
+      <!-- Quote (figcaption) -->
+      <section class="bg-pastel-purple px-4 py-10 text-center sm:px-6 reveal">
+        <p class="font-display italic text-2xl font-semibold text-gray-900 sm:text-3xl">
+          “Ничто так не красит женщину, как материнство”.
+        </p>
+      </section>
+
+      <svg class="block w-full h-12 lg:h-24" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,0 C240,90 480,90 720,45 C960,0 1200,0 1440,45 L1440,90 L0,90 Z" fill="#fdf2f8"></path> </svg>
+
+      <section id="psychology-science" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal">
+        <div class="mx-auto max-w-6xl">
+          <div class="text-center mb-12">
+            <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl">Психология и репродуктивное здоровье: что говорит наука?</h2>
+            <p class="mt-4 font-sans text-lg text-gray-700 max-w-3xl mx-auto">
+              Исследования в области репродуктивной психосоматики подтверждают — <strong>ДА</strong>, психологическое состояние напрямую влияет на успех лечения.
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="rounded-2xl bg-white p-8 shadow-soft border border-purple-100 hover-lift text-center">
+              <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-purple-50 mb-4">
+                <i class="fa-solid fa-chart-line text-purple-400"></i>
               </div>
-
-              <p class="mt-8 font-display text-4xl font-semibold italic tracking-tight text-gray-900 sm:text-5xl">
-                Айпери Сатыбалдиева
+              <h3 class="font-sans font-bold text-lg text-gray-900 mb-3">Эффективность ЭКО</h3>
+              <p class="font-sans text-sm text-gray-700 leading-relaxed">
+                Согласно мета-анализам международных исследований, у пар, получающих психологическую поддержку, вероятность наступления беременности в циклах ЭКО и ИИ увеличивается в среднем на <strong>45%</strong>.*
               </p>
-              <h1 class="mt-3 font-display text-3xl font-semibold italic tracking-tight text-gray-900 sm:text-4xl">
-                Перинатальный психолог
-              </h1>
             </div>
-
-            <div class="order-1 lg:order-2">
-              <figure class="rounded-2xl bg-white p-3 shadow-soft ring-1 ring-purple-100">
-                <div class="relative overflow-hidden rounded-2xl bg-purple-100">
-                  <div
-                    class="absolute inset-0 bg-gradient-to-tr via-white/0"
-                    style="--tw-gradient-from: rgb(var(--tint-lavender) / 0.70); --tw-gradient-to: rgb(var(--tint-blush) / 0.65)"
-                  ></div>
-
-                  <img
-                    id="hero-photo"
-                    src="Aiperi_main_photo.jpg"
-                    alt="Фото"
-                    class="relative z-10 h-72 w-full object-cover sm:h-80"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-                  />
-
-                  <div
-                    class="relative z-10 hidden h-72 w-full place-items-center px-6 text-center text-sm font-semibold text-gray-700 sm:h-80"
-                    aria-label="Фото (заглушка)"
-                  >
-                    <div>
-                      <div class="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-white/80 shadow-soft">
-                        <i class="fa-solid fa-image text-purple-600" aria-hidden="true"></i>
-                      </div>
-                      Фото
-                      <div class="mt-1 text-xs font-normal text-gray-600">Aiperi_main_photo.jpg</div>
-                    </div>
-                  </div>
-                </div>
-
-                <figcaption class="px-2 pb-1 pt-5 text-center">
-                  <p class="font-display text-2xl font-semibold italic text-gray-900 sm:text-3xl">
-                    “Ничто так не красит женщину, как материнство”.
-                  </p>
-                </figcaption>
-              </figure>
+            <div class="rounded-2xl bg-white p-8 shadow-soft border border-purple-100 hover-lift text-center">
+              <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-purple-50 mb-4">
+                <i class="fa-solid fa-leaf text-purple-400"></i>
+              </div>
+              <h3 class="font-sans font-bold text-lg text-gray-900 mb-3">Снижение стресса</h3>
+              <p class="font-sans text-sm text-gray-700 leading-relaxed">
+                Программы по снижению стресса (Mind-Body) показывают впечатляющие результаты: в группах с психологическим сопровождением частота зачатия <strong>в 2 раза выше</strong>, чем в группах без него.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-white p-8 shadow-soft border border-purple-100 hover-lift text-center">
+              <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-purple-50 mb-4">
+                <i class="fa-solid fa-shield-heart text-purple-400"></i>
+              </div>
+              <h3 class="font-sans font-bold text-lg text-gray-900 mb-3">Профилактика «выгорания»</h3>
+              <p class="font-sans text-sm text-gray-700 leading-relaxed">
+                До <strong>50%</strong> пар прекращают лечение после первой неудачи из-за эмоционального истощения. Психологическая помощь помогает сохранить ресурс и дойти до победного результата.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Services (accent, single column) -->
-      <section id="services" style="background-color: rgb(var(--tint-blush) / 0.55)">
-        <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
-          <div class="mb-10 text-center">
-            <h2 class="text-2xl font-semibold text-gray-900 sm:text-3xl">Оказываю психологическую помощь, если:</h2>
-          </div>
+      <svg class="block w-full h-12 lg:h-24 bg-pastel-pink" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,90 C240,0 480,0 720,45 C960,90 1200,90 1440,45 L1440,0 L0,0 Z" fill="#faf5ff"></path> </svg>
 
-          <div class="mx-auto grid max-w-3xl gap-5">
-            <!-- 1 -->
-            <article class="rounded-2xl bg-white p-8 text-center shadow-soft ring-1 ring-purple-100">
-              <div class="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-purple-100">
-                <i class="fa-solid fa-seedling text-purple-700" aria-hidden="true"></i>
-              </div>
-              <p class="mt-5 text-lg leading-relaxed text-gray-800 sm:text-xl">
-                У вас бесплодие: хронические заболевания органов малого таза, гормональные нарушения, СПКЯ и т.д., трудно поддающиеся лечению либо одно заменяется
-                другим. Если у вас бесплодие неясного генеза (идиопатическое бесплодие).
-              </p>
-
-              <div class="mt-6 rounded-2xl bg-purple-50 p-6 ring-1 ring-purple-100">
-                <p class="text-base leading-relaxed text-gray-700 sm:text-lg">
-                  Вы можете написать в любое время мне на почту свою историю болезни с диагнозами и лечением, сроками, настоящим состоянием и планами. Отвечаю обычно
-                  в течении 3 дней.
-                </p>
-                <a
-                  href="mailto:satybaldieva0312@gmail.com?subject=%D0%97%D0%B0%D0%BF%D1%80%D0%BE%D1%81%20%D0%BA%20%D0%BF%D0%B5%D1%80%D0%B8%D0%BD%D0%B0%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%BC%D1%83%20%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%D1%83"
-                  class="mt-4 inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-100 px-6 py-3 text-base font-semibold text-emerald-900 shadow-soft ring-1 ring-emerald-200/70 transition hover:bg-emerald-200/70 focus:outline-none focus:ring-2 focus:ring-emerald-200"
-                >
-                  <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                  Написать на почту
-                </a>
-              </div>
-            </article>
-
-            <!-- 2 -->
-            <article class="rounded-2xl bg-white p-8 text-center shadow-soft ring-1 ring-purple-100">
-              <div class="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-purple-100">
-                <i class="fa-solid fa-vial-circle-check text-purple-700" aria-hidden="true"></i>
-              </div>
-              <p class="mt-5 text-lg leading-relaxed text-gray-800 sm:text-xl">
-                Вы думаете об ЭКО, решили и готовитесь к ЭКО или находитесь уже в процессе ЭКО.
-              </p>
-            </article>
-
-            <!-- 3 -->
-            <article class="rounded-2xl bg-white p-8 text-center shadow-soft ring-1 ring-purple-100">
-              <div class="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-purple-100">
-                <i class="fa-solid fa-hand-holding-heart text-purple-700" aria-hidden="true"></i>
-              </div>
-              <p class="mt-5 text-lg leading-relaxed text-gray-800 sm:text-xl">
-                Вам сказали, что нужны донорские материалы или Вы сами хотите стать донором.
-              </p>
-            </article>
-
-            <!-- 4 -->
-            <article class="rounded-2xl bg-white p-8 text-center shadow-soft ring-1 ring-purple-100">
-              <div class="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-purple-100">
-                <i class="fa-solid fa-cloud-moon text-purple-700" aria-hidden="true"></i>
-              </div>
-              <p class="mt-5 text-lg leading-relaxed text-gray-800 sm:text-xl">
-                Вы планируете беременность и при этом чувствуете неуверенность, страх, тревогу.
-              </p>
-            </article>
-
-            <!-- 5 -->
-            <article class="rounded-2xl bg-white p-8 text-center shadow-soft ring-1 ring-purple-100">
-              <div class="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-purple-100">
-                <i class="fa-solid fa-dove text-purple-700" aria-hidden="true"></i>
-              </div>
-              <p class="mt-5 text-lg leading-relaxed text-gray-800 sm:text-xl">
-                Потеряли своего ребенка до (выкидыш, замерший плод, аборт) или после рождения.
-              </p>
-            </article>
-
-            <!-- 6 -->
-            <article class="rounded-2xl bg-white p-8 text-center shadow-soft ring-1 ring-purple-100">
-              <div class="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-purple-100">
-                <i class="fa-solid fa-person-pregnant text-purple-700" aria-hidden="true"></i>
-              </div>
-              <p class="mt-5 text-lg leading-relaxed text-gray-800 sm:text-xl">
-                Вы беременны и нуждаетесь в поддержке, понимании вашего состояния; беспокоитесь о предстоящих родах и будущем.
-              </p>
-            </article>
-
-            <!-- 7 -->
-            <article class="rounded-2xl bg-white p-8 text-center shadow-soft ring-1 ring-purple-100">
-              <div class="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-purple-100">
-                <i class="fa-solid fa-circle-exclamation text-purple-700" aria-hidden="true"></i>
-              </div>
-              <p class="mt-5 text-lg leading-relaxed text-gray-800 sm:text-xl">
-                У вас послеродовая депрессия.
-              </p>
-            </article>
-
-            <!-- 8 -->
-            <article class="rounded-2xl bg-white p-8 text-center shadow-soft ring-1 ring-purple-100">
-              <div class="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-purple-100">
-                <i class="fa-solid fa-mug-hot text-purple-700" aria-hidden="true"></i>
-              </div>
-              <p class="mt-5 text-lg leading-relaxed text-gray-800 sm:text-xl">
-                Вы мама малыша, которому до 3-х лет и чувствуете непереносимую усталость, что вы истощены и не справляетесь.
-              </p>
-            </article>
-          </div>
-
-          <div class="mt-10 flex justify-center">
-            <a
-              href="https://wa.me/996999772099"
-              target="_blank"
-              rel="noreferrer"
-              class="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-emerald-100 px-8 py-4 text-lg font-semibold text-emerald-900 shadow-soft ring-1 ring-emerald-200/70 transition hover:bg-emerald-200/70 focus:outline-none focus:ring-2 focus:ring-emerald-200 sm:w-auto"
-            >
-              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
-              Написать в WhatsApp
-            </a>
+      <section id="how-it-works" class="bg-pastel-purple py-16 px-4 sm:px-6 reveal">
+        <div class="mx-auto max-w-4xl bg-white rounded-3xl p-8 sm:p-12 shadow-soft border border-purple-100">
+          <h2 class="font-display italic text-3xl font-semibold text-gray-900 text-center sm:text-4xl">Как это работает?</h2>
+          <p class="mt-4 font-sans text-base text-gray-700 text-center leading-relaxed">
+            Хронический стресс переводит организм в режим «выживания», в котором репродуктивная система часто «отключается» как второстепенная.
+          </p>
+          
+          <p class="mt-8 font-sans font-semibold text-gray-900 text-center">Работа с психологом помогает:</p>
+          <ul class="mt-6 space-y-4 font-sans text-gray-700">
+            <li class="flex gap-3 items-start">
+              <i class="fa-solid fa-check text-pastel-greenDark mt-1 bg-pastel-green rounded-full p-1 text-xs"></i>
+              <span>Снизить уровень кортизола, который может препятствовать наступлению беременности, имплантации эмбриона, успешному вынашиванию плода.</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <i class="fa-solid fa-check text-pastel-greenDark mt-1 bg-pastel-green rounded-full p-1 text-xs"></i>
+              <span>Убрать «психологические блоки» и страхи, связанные с будущим материнством.</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <i class="fa-solid fa-check text-pastel-greenDark mt-1 bg-pastel-green rounded-full p-1 text-xs"></i>
+              <span>Вернуть контроль над своей жизнью, перестав измерять её только циклами и анализами.</span>
+            </li>
+          </ul>
+          
+          <div class="mt-8 pt-6 border-t border-purple-50">
+            <p class="font-sans text-xs text-gray-500 text-center">
+              * Данные основаны на исследованиях Гарвардской медицинской школы и мета-анализах публикаций в журнале Human Reproduction.
+            </p>
           </div>
         </div>
       </section>
 
-      <!-- About -->
-      <section id="about" style="background-color: rgb(var(--tint-lavender) / 0.45)">
-        <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-          <div class="grid gap-10 lg:grid-cols-2 lg:items-start">
-            <div>
-              <figure class="rounded-2xl bg-white p-3 shadow-soft ring-1 ring-purple-100">
-                <div class="relative overflow-hidden rounded-2xl bg-purple-100">
-                  <div class="absolute inset-0 bg-gradient-to-tr from-purple-200/45 via-white/0 to-fuchsia-200/30"></div>
+      <section id="mission" class="bg-pastel-purple pb-20 px-4 sm:px-6 text-center reveal">
+        <div class="mx-auto max-w-3xl">
+          <p class="font-sans text-xl sm:text-2xl font-medium text-gray-800 leading-relaxed">
+            Моя задача — не просто поддержать вас в сложный период, но и помочь вашему телу стать максимально благоприятной средой для новой жизни.
+          </p>
+        </div>
+      </section>
 
-                  <img
-                    src="image-placeholder-aiperi.jpg"
-                    alt="Фото психолога Айпери"
-                    class="relative z-10 h-80 w-full object-cover sm:h-[420px]"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-                  />
+      <!-- WhatsApp button section -->
+      <section id="whatsapp" class="bg-pastel-purple pb-20 px-4 sm:px-6 text-center reveal">
+        <div class="mx-auto max-w-3xl">
+          <a
+            href="https://wa.me/996999772099"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center justify-center gap-3 rounded-full bg-pastel-green px-8 py-4 font-sans text-lg font-semibold text-pastel-greenDark shadow-soft ring-1 ring-pastel-greenBorder transition hover:bg-green-200 hover-lift"
+          >
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            Записаться на бесплатную первичную консультацию
+          </a>
+        </div>
+      </section>
 
-                  <div
-                    class="relative z-10 hidden h-80 w-full place-items-center px-6 text-center text-sm font-semibold text-gray-700 sm:h-[420px]"
-                    aria-label="Фото психолога (заглушка)"
-                  >
-                    <div>
-                      <div class="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-white/80 shadow-soft">
-                        <i class="fa-solid fa-user text-purple-600" aria-hidden="true"></i>
-                      </div>
-                      Фото психолога
-                      <div class="mt-1 text-xs font-normal text-gray-600">image-placeholder-aiperi.jpg</div>
-                    </div>
-                  </div>
-                </div>
-              </figure>
-            </div>
+      <svg class="block w-full h-12 lg:h-24 bg-pastel-purple" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,0 C240,90 480,90 720,45 C960,0 1200,0 1440,45 L1440,90 L0,90 Z" fill="#fdf2f8"></path>
+      </svg>
 
-            <div class="rounded-2xl bg-white p-6 shadow-soft ring-1 ring-purple-100 sm:p-8">
-              <h2 class="text-2xl font-semibold text-gray-900 sm:text-3xl">Обо мне</h2>
+      <section id="about" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal">
+        <div class="mx-auto max-w-6xl">
+          <div class="grid gap-12 lg:grid-cols-12 lg:items-start">
+            
+            <div class="lg:col-span-7">
+              <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl mb-6">Обо мне</h2>
+              <div class="space-y-4 font-sans text-base text-gray-700 leading-relaxed text-justify">
+                <p><strong>Привет! Я Айпери</strong>, психолог с 8-ми летним стажем, а с 2023 года консультирую женщин с бесплодием, помогая устранить психологические барьеры и прийти к материнству.</p>
+                <p>Мой путь в перинатальную психологию начался не с университетской скамьи, а с 15 летней борьбы за право быть мамой. Я прошла через всё: множество врачей, бесконечные обследования, лечения, диагноз «бесплодие»; надежды, сменяющиеся отчаянием и долгие годы в состоянии депрессии. Я знаю, что чувствует женщина, когда вокруг все беременеют и рожают детей, а её мир как будто замер.</p>
+                <p>Сегодня я — счастливая мама. Мой путь показал: психологическое состояние — это не «приложение» к анализам, а фундамент, на котором строится успех каждой медицинской процедуры. Теперь я помогаю другим женщинам пройти эту дорогу без лишних травм, чувствуя профессиональную опору и возвращая себе право на счастье. Я не просто психолог. Я человек, который был на вашем месте и знает выход.</p>
+                <p>Психологическое благополучие женщины в такие непростые периоды так же важно, как и физическое здоровье. Я помогаю найти внутреннюю опору, когда кажется, что земля уходит из-под ног, и учу доверять себе и конечно же своему телу.</p>
+              </div>
 
-              <div class="mt-7">
-                <h4 class="text-sm font-semibold text-gray-900">Высшее образование</h4>
-                <ul class="mt-3 space-y-3 text-sm leading-relaxed text-gray-700">
-                  <li class="flex gap-3">
-                    <i class="fa-solid fa-graduation-cap mt-0.5 text-purple-600" aria-hidden="true"></i>
+              <div class="mt-10 bg-white rounded-3xl p-8 shadow-sm border border-purple-100">
+                <h4 class="font-sans font-bold text-gray-900 text-lg mb-4">Высшее образование</h4>
+                <ul class="space-y-3 font-sans text-sm text-gray-700">
+                  <li class="flex gap-3 items-start">
+                    <i class="fa-solid fa-graduation-cap text-purple-400 mt-1"></i>
                     <span>АН ПОО «Международный университет» 2026 год — Перинатальная психология</span>
                   </li>
-                  <li class="flex gap-3">
-                    <i class="fa-solid fa-graduation-cap mt-0.5 text-purple-600" aria-hidden="true"></i>
-                    <span>
-                      Европейская школа психологии 2018 - 2020 гг. — Комплексная программа подготовки психолога (квалификация: Психолог по методу Трансформации
-                      ментальных состояний)
-                    </span>
+                  <li class="flex gap-3 items-start">
+                    <i class="fa-solid fa-graduation-cap text-purple-400 mt-1"></i>
+                    <span>Европейская школа психологии 2018 - 2020 гг. — Психолог по методу Трансформации ментальных состояний</span>
                   </li>
-                  <li class="flex gap-3">
-                    <i class="fa-solid fa-graduation-cap mt-0.5 text-purple-600" aria-hidden="true"></i>
-                    <span>Московский государственный институт международных отношений (МГИМО) 2017-2018 гг. — квалификация Магистр права</span>
+                  <li class="flex gap-3 items-start">
+                    <i class="fa-solid fa-graduation-cap text-purple-400 mt-1"></i>
+                    <span>МГИМО 2017-2018 гг. — Магистр права</span>
                   </li>
                 </ul>
-              </div>
 
-              <div class="mt-8">
-                <h4 class="text-sm font-semibold text-gray-900">Пройденные курсы</h4>
-                <ul class="mt-3 space-y-3 text-sm leading-relaxed text-gray-700">
-                  <li class="flex gap-3">
-                    <i class="fa-solid fa-circle-check mt-0.5 text-purple-600" aria-hidden="true"></i>
+                <h4 class="font-sans font-bold text-gray-900 text-lg mt-8 mb-4">Пройденные курсы</h4>
+                <ul class="space-y-3 font-sans text-sm text-gray-700">
+                  <li class="flex gap-3 items-start">
+                    <i class="fa-solid fa-certificate text-purple-400 mt-1"></i>
                     <span>Психологическая помощь при ЭКО - 2026</span>
                   </li>
-                  <li class="flex gap-3">
-                    <i class="fa-solid fa-circle-check mt-0.5 text-purple-600" aria-hidden="true"></i>
-                    <span>Работы с утратой в перинатальном периоде – 2024</span>
+                  <li class="flex gap-3 items-start">
+                    <i class="fa-solid fa-certificate text-purple-400 mt-1"></i>
+                    <span>Работа с утратой в перинатальном периоде – 2024</span>
                   </li>
-                  <li class="flex gap-3">
-                    <i class="fa-solid fa-circle-check mt-0.5 text-purple-600" aria-hidden="true"></i>
+                  <li class="flex gap-3 items-start">
+                    <i class="fa-solid fa-certificate text-purple-400 mt-1"></i>
                     <span>Психологическое бесплодие у женщин: психосоматика как причина женского бесплодия - 2023</span>
                   </li>
                 </ul>
               </div>
+            </div>
 
-              <div class="mt-8 rounded-2xl p-5 ring-1 ring-purple-100" style="background-color: rgb(var(--tint-blush) / 0.55)">
-                <p class="text-sm leading-relaxed text-gray-700 sm:text-base">
-                  Если вы не уверены, с чего начать — напишите пару строк о вашей ситуации. Я отвечу и предложу наиболее бережный формат поддержки.
-                </p>
+            <div class="lg:col-span-5 relative">
+              <div class="sticky top-24">
+                <div class="rounded-[2rem] overflow-hidden shadow-soft border-4 border-white">
+                  <img
+                    src="image-placeholder-aiperi.jpg"
+                    alt="Айпери Сатыбалдиева"
+                    class="w-full object-cover aspect-[3/4]"
+                    onerror="this.src='Aiperi_main_photo.jpg';"
+                  />
+                </div>
               </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <svg class="block w-full h-12 lg:h-24 bg-pastel-pink" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,90 C240,0 480,0 720,45 C960,90 1200,90 1440,45 L1440,0 L0,0 Z" fill="#faf5ff"></path>
+      </svg>
+
+      <section id="work-with" class="bg-pastel-purple py-16 px-4 sm:px-6 reveal">
+        <div class="mx-auto max-w-6xl">
+          <h2 class="font-display italic text-3xl font-semibold text-gray-900 text-center sm:text-4xl mb-12">С чем работаю:</h2>
+          
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="rounded-3xl bg-white p-8 shadow-sm border border-purple-200 hover-lift">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-2">Бесплодие</h3>
+              <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
+                Иногда организм женщины блокирует зачатие из-за бессознательных страхов (вторичные выгоды, страх потери контроля, травмы прошлого). Вместе мы ищем ваши внутренние блоки и скрытые страхи, препятствующие наступлению материнства; и работаем над ними. Восстанавливаем ресурсное состояние тела, которое давно находится в стрессовом замирании. Моя роль как психолога - помочь вам выйти из режима «выживания» и переключить ресурсы организма на продолжение рода. Психолог работает не «вместо» врачей, а «вместе» с ними, повышая эффективность медицинских процедур.
+              </p>
+            </div>
+            <div class="rounded-3xl bg-white p-8 shadow-sm border border-purple-200 hover-lift">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-2">Подготовка и сопровождение ЭКО</h3>
+              <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
+                ЭКО – это колоссальная нагрузка на психоэмоциональную устойчивость женщины. Страх провала, эмоциональные качели, изматывающее ожидание ХГЧ. Вместе мы создадим «психологический кокон» вокруг вашего протокола, помогу снизить уровень тревоги, который мешает имплантации. Создадим ту самую психологическую - «принимающую» среду для зарождения в ней новой жизни.
+              </p>
+            </div>
+            <div class="rounded-3xl bg-white p-8 shadow-sm border border-purple-200 hover-lift">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-2">Донорские программы</h3>
+              <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
+                Сложные чувства по поводу генетической связи - «будет ли ребенок моим?», чувство вины, страх осуждения со стороны близких и общества. А что я скажу, когда он вырастит? Вместе с вами бережно работаем над принятием донорского материала. Меняем образ «чужеродного» в образ «своего», «дара судьбы», чтобы вы могли войти в материнство с чистым сердцем и полной уверенностью в своей роли матери.
+              </p>
+            </div>
+            <div class="rounded-3xl bg-white p-8 shadow-sm border border-purple-200 hover-lift">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-2">Перинатальные потери</h3>
+              <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
+                Горе после замершей беременности, выкидыша, неудачного протокола ЭКО или потери малыша в родах должно быть прожито правильно, в противном случае это будет влиять на дальнейшие успехи завести детей. Я сопровождаю в этом процессе проживания горя, чтобы оно не стало «застывшим». Помогу вам избавиться от чувства несправедливости, пустоты и страха, что это повторится снова. Это даст вам силы, внутренние ресурсы и психологическое разрешение на новую попытку и новую жизнь.
+              </p>
+            </div>
+            <div class="rounded-3xl bg-white p-8 shadow-sm border border-purple-200 hover-lift md:col-span-2">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-2 text-center md:text-left">Материнство</h3>
+              <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
+                Став матерью уже в прилично осознанном возрасте (в 32 года) я пережила на себе все сложности нового состояния - материнства. Ожидания от материнства могут не совпасть с реальностью, вы чувствуете вину или тревогу. Помогу вам адаптироваться в новой роли и получать радости от контакта с ребенком.<br><br>
+                Также женщины иногда чувствуют непринятие своего малыша, об этом не принято говорить никому. У этого есть свои объяснения: возможно у нее был негативный опыт детско-родительских отношений. И здесь очень важно найти, и проработать каждый болезненный момент.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Certificates -->
-      <section id="certs" class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-        <div class="mb-8 sm:mb-10">
-          <h2 class="text-2xl font-semibold text-gray-900 sm:text-3xl">Дипломы и сертификаты</h2>
-          <p class="mt-3 max-w-3xl text-sm leading-relaxed text-gray-700 sm:text-base">
-            Здесь можно разместить фотографии дипломов и сертификатов. Сейчас — аккуратные заглушки.
+      <svg class="block w-full h-12 lg:h-24 bg-pastel-purple" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,0 C240,90 480,90 720,45 C960,0 1200,0 1440,45 L1440,90 L0,90 Z" fill="#fdf2f8"></path>
+      </svg>
+
+      <section id="pricing" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal">
+        <div class="mx-auto max-w-3xl bg-white rounded-3xl p-8 sm:p-12 shadow-soft border border-purple-100 text-center">
+          <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl mb-8">Тарифы</h2>
+          
+          <ul class="space-y-6 font-sans text-lg text-gray-800">
+            <li class="flex justify-between items-center border-b border-purple-50 pb-4 flex-col sm:flex-row gap-2">
+              <span>Первичная консультация по бесплодию</span>
+              <span class="font-bold text-pastel-greenDark bg-pastel-green px-4 py-1 rounded-full text-sm sm:text-base">бесплатная</span>
+            </li>
+            <li class="flex justify-between items-center border-b border-purple-50 pb-4 flex-col sm:flex-row gap-2">
+              <span>Пакет 4 сессии</span>
+              <span class="font-bold">25 000 сомов</span>
+            </li>
+            <li class="flex justify-between items-center border-b border-purple-50 pb-4 flex-col sm:flex-row gap-2">
+              <span>Пакет 8 сессий</span>
+              <span class="font-bold">30 000 сомов</span>
+            </li>
+            <li class="flex justify-between items-center border-b border-purple-50 pb-4 flex-col sm:flex-row gap-2">
+              <span>Разовая сессия</span>
+              <span class="font-bold">7 000 сомов</span>
+            </li>
+          </ul>
+          
+          <p class="mt-8 font-sans text-sm text-gray-500">
+            * Каждая сессия длится 70-90 минут
           </p>
         </div>
+      </section>
 
-        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div class="group overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-purple-100">
-            <div class="grid aspect-[4/5] place-items-center bg-purple-100/70 p-6 text-center">
-              <div>
-                <i class="fa-solid fa-certificate text-2xl text-purple-700" aria-hidden="true"></i>
-                <div class="mt-2 text-sm font-semibold text-gray-800">Диплом</div>
-              </div>
+      <svg class="block w-full h-12 lg:h-24 bg-pastel-pink" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,90 C240,0 480,0 720,45 C960,90 1200,90 1440,45 L1440,0 L0,0 Z" fill="#faf5ff"></path>
+      </svg>
+
+      <section id="faq" class="bg-pastel-purple py-16 px-4 sm:px-6 reveal">
+        <div class="mx-auto max-w-4xl">
+          <h2 class="font-display italic text-3xl font-semibold text-gray-900 text-center sm:text-4xl mb-12">Часто задаваемые вопросы (FAQ)</h2>
+          
+          <div class="space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-purple-100">
+              <p class="font-sans font-bold text-gray-900 mb-2">
+                <span class="text-purple-400 mr-2">В:</span> Врачи говорят, что я здорова, но беременность не наступает. Может ли это быть «в голове»?
+              </p>
+              <p class="font-sans text-gray-700 text-sm leading-relaxed">
+                <span class="text-pastel-greenDark font-bold mr-2">О:</span> Да, это называют психологическим бесплодием. Когда организм находится в состоянии хронического стресса или скрытых страхов, мозг подает сигнал «сейчас не время/небезопасно», и репродуктивная система «засыпает». Психолог работает над тем, чтобы найти и устранить эти внутренние блоки.
+              </p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-purple-100">
+              <p class="font-sans font-bold text-gray-900 mb-2">
+                <span class="text-purple-400 mr-2">В:</span> Как перестать думать только о планировании? Кажется, моя жизнь превратилась в ожидание овуляции.
+              </p>
+              <p class="font-sans text-gray-700 text-sm leading-relaxed">
+                <span class="text-pastel-greenDark font-bold mr-2">О:</span> Это состояние «зацикленности» изматывает психику. В терапии мы возвращаем вам вкус жизни вне диагнозов. Как ни парадоксально, но когда фокус внимания смещается со сверхзадачи на саму себя, шансы на успех возрастают.
+              </p>
+            </div>
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-purple-100">
+              <p class="font-sans font-bold text-gray-900 mb-2">
+                <span class="text-purple-400 mr-2">В:</span> Боюсь очередной неудачи в протоколе. Как пережить это ожидание ХГЧ?
+              </p>
+              <p class="font-sans text-gray-700 text-sm leading-relaxed">
+                <span class="text-pastel-greenDark font-bold mr-2">О:</span> Период ожидания — самый сложный. Я даю конкретные техники саморегуляции и телесные практики, которые помогают снизить уровень кортизола и прожить эти две недели без паники, сохраняя ресурс для себя и будущего малыша.
+              </p>
             </div>
           </div>
-          <div class="group overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-purple-100">
-            <div class="grid aspect-[4/5] place-items-center bg-purple-100/70 p-6 text-center">
-              <div>
-                <i class="fa-solid fa-certificate text-2xl text-purple-700" aria-hidden="true"></i>
-                <div class="mt-2 text-sm font-semibold text-gray-800">Диплом</div>
+        </div>
+      </section>
+
+      <section id="pre-contacts" class="bg-pastel-purple pb-16 px-4 sm:px-6 text-center reveal">
+        <div class="relative mx-auto max-w-3xl bg-pink-50/50 rounded-3xl p-8 border border-pink-100 overflow-hidden">
+          <img
+            src="декор/image copy 2.png"
+            alt=""
+            aria-hidden="true"
+            class="pointer-events-none absolute -right-10 -bottom-10 w-56 opacity-25 mix-blend-multiply sm:w-64"
+            loading="lazy"
+          />
+          <p class="font-sans text-base sm:text-lg text-gray-800 leading-relaxed font-medium">
+            В моей работе нет места оценкам или советам «как надо». Я использую классический метод психоанализа и конечно мягкие техники релаксации и арт-терапия. Для меня важно, чтобы вы чувствовали себя услышанной и защищенной.
+          </p>
+        </div>
+      </section>
+
+      <section id="certs" class="bg-pastel-purple pb-20 px-4 sm:px-6 reveal">
+        <div class="mx-auto max-w-6xl">
+          <h2 class="font-display italic text-3xl font-semibold text-gray-900 text-center sm:text-4xl mb-10">Дипломы и сертификаты</h2>
+
+          <div class="grid gap-10">
+            <div>
+              <h3 class="font-sans text-xl font-semibold text-gray-900 mb-5 text-center sm:text-left">Дипломы</h3>
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <a href="дипломы/image.png" target="_blank" rel="noreferrer" class="block hover-lift">
+                  <div class="cert-frame">
+                    <img src="дипломы/image.png" alt="Диплом" class="cert-diploma-1" loading="lazy" />
+                  </div>
+                </a>
+                <a href="дипломы/image copy.png" target="_blank" rel="noreferrer" class="block hover-lift">
+                  <div class="cert-frame">
+                    <img src="дипломы/image copy.png" alt="Диплом" loading="lazy" />
+                  </div>
+                </a>
+                <a href="дипломы/image copy 2.png" target="_blank" rel="noreferrer" class="block hover-lift">
+                  <div class="cert-frame">
+                    <img src="дипломы/image copy 2.png" alt="Диплом" loading="lazy" />
+                  </div>
+                </a>
+                <a href="дипломы/image copy 3.png" target="_blank" rel="noreferrer" class="block hover-lift">
+                  <div class="cert-frame">
+                    <img src="дипломы/image copy 3.png" alt="Диплом" class="cert-diploma-4" loading="lazy" />
+                  </div>
+                </a>
               </div>
             </div>
-          </div>
-          <div class="group overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-purple-100">
-            <div class="grid aspect-[4/5] place-items-center bg-purple-100/70 p-6 text-center">
-              <div>
-                <i class="fa-solid fa-certificate text-2xl text-purple-700" aria-hidden="true"></i>
-                <div class="mt-2 text-sm font-semibold text-gray-800">Диплом</div>
-              </div>
-            </div>
-          </div>
-          <div class="group overflow-hidden rounded-2xl bg-white shadow-soft ring-1 ring-purple-100">
-            <div class="grid aspect-[4/5] place-items-center bg-purple-100/70 p-6 text-center">
-              <div>
-                <i class="fa-solid fa-certificate text-2xl text-purple-700" aria-hidden="true"></i>
-                <div class="mt-2 text-sm font-semibold text-gray-800">Диплом</div>
+
+            <div>
+              <h3 class="font-sans text-xl font-semibold text-gray-900 mb-5 text-center sm:text-left">Сертификаты</h3>
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <a href="сертификаты/image.png" target="_blank" rel="noreferrer" class="block hover-lift">
+                  <div class="cert-frame">
+                    <img src="сертификаты/image.png" alt="Сертификат" loading="lazy" />
+                  </div>
+                </a>
+                <a href="сертификаты/image copy.png" target="_blank" rel="noreferrer" class="block hover-lift">
+                  <div class="cert-frame">
+                    <img src="сертификаты/image copy.png" alt="Сертификат" loading="lazy" />
+                  </div>
+                </a>
+                <a href="сертификаты/image copy 2.png" target="_blank" rel="noreferrer" class="block hover-lift">
+                  <div class="cert-frame">
+                    <img src="сертификаты/image copy 2.png" alt="Сертификат" loading="lazy" />
+                  </div>
+                </a>
+                <a href="сертификаты/image copy 3.png" target="_blank" rel="noreferrer" class="block hover-lift">
+                  <div class="cert-frame">
+                    <img src="сертификаты/image copy 3.png" alt="Сертификат" loading="lazy" />
+                  </div>
+                </a>
+                <a href="сертификаты/image copy 4.png" target="_blank" rel="noreferrer" class="block hover-lift">
+                  <div class="cert-frame">
+                    <img src="сертификаты/image copy 4.png" alt="Сертификат" loading="lazy" />
+                  </div>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
+
     </main>
 
-    <!-- Footer / Contacts -->
-    <footer id="contacts" style="background-color: rgb(var(--tint-lavender) / 0.35)">
+    <footer class="bg-purple-100/50 border-t border-purple-100">
       <div class="mx-auto max-w-6xl px-4 py-12 text-gray-800 sm:px-6">
-        <div class="text-center">
-          <h2 class="text-2xl font-semibold">Контакты</h2>
-          <p class="mt-2 text-sm text-gray-600">г. Бишкек, Кыргызстан</p>
+        <div class="text-center mb-8">
+          <h2 class="font-display italic text-3xl font-semibold text-gray-900">Контакты</h2>
+          <p class="mt-2 font-sans text-sm text-gray-600">г. Бишкек, Кыргызстан</p>
         </div>
 
-        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <a
-            class="flex items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-soft ring-1 ring-purple-100 transition hover:bg-pink-50/60"
-            href="tel:+996999772099"
-          >
-            <i class="fa-solid fa-phone text-purple-600" aria-hidden="true"></i>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 font-sans">
+          <a class="flex items-center gap-4 rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-purple-100 transition hover:bg-pastel-pink hover-lift" href="tel:+996999772099">
+            <div class="bg-purple-50 p-3 rounded-full text-purple-500"><i class="fa-solid fa-phone"></i></div>
             <div>
-              <div class="text-xs text-gray-600">Телефон 1</div>
-              <div class="font-semibold">+996 (999) 772-099</div>
+              <div class="text-xs text-gray-500 mb-1">Телефон 1</div>
+              <div class="font-semibold text-sm">+996 (999) 772-099</div>
             </div>
           </a>
 
-          <a
-            class="flex items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-soft ring-1 ring-purple-100 transition hover:bg-pink-50/60"
-            href="tel:+996702064770"
-          >
-            <i class="fa-solid fa-phone text-purple-600" aria-hidden="true"></i>
+          <a class="flex items-center gap-4 rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-purple-100 transition hover:bg-pastel-pink hover-lift" href="tel:+996702064770">
+            <div class="bg-purple-50 p-3 rounded-full text-purple-500"><i class="fa-solid fa-phone"></i></div>
             <div>
-              <div class="text-xs text-gray-600">Телефон 2</div>
-              <div class="font-semibold">+996 (702) 064-770</div>
+              <div class="text-xs text-gray-500 mb-1">Телефон 2</div>
+              <div class="font-semibold text-sm">+996 (702) 064-770</div>
             </div>
           </a>
 
-          <a
-            class="flex items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-soft ring-1 ring-purple-100 transition hover:bg-pink-50/60"
-            href="mailto:satybaldieva0312@gmail.com"
-          >
-            <i class="fa-solid fa-envelope text-purple-600" aria-hidden="true"></i>
+          <a class="flex items-center gap-4 rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-purple-100 transition hover:bg-pastel-pink hover-lift" href="mailto:satybaldieva0312@gmail.com">
+            <div class="bg-purple-50 p-3 rounded-full text-purple-500"><i class="fa-solid fa-envelope"></i></div>
             <div>
-              <div class="text-xs text-gray-600">Почта</div>
-              <div class="break-all font-semibold">satybaldieva0312@gmail.com</div>
+              <div class="text-xs text-gray-500 mb-1">Почта</div>
+              <div class="font-semibold text-sm break-all">satybaldieva0312@gmail.com</div>
             </div>
           </a>
 
-          <a
-            class="flex items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-soft ring-1 ring-purple-100 transition hover:bg-pink-50/60"
-            href="https://instagram.com/satybaldieva_psycholog"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <i class="fa-brands fa-instagram text-purple-600" aria-hidden="true"></i>
+          <a class="flex items-center gap-4 rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-purple-100 transition hover:bg-pastel-pink hover-lift" href="https://instagram.com/satybaldieva_psycholog" target="_blank" rel="noreferrer">
+            <div class="bg-purple-50 p-3 rounded-full text-purple-500"><i class="fa-brands fa-instagram text-lg"></i></div>
             <div>
-              <div class="text-xs text-gray-600">Instagram</div>
-              <div class="font-semibold">@satybaldieva_psycholog</div>
+              <div class="text-xs text-gray-500 mb-1">Instagram</div>
+              <div class="font-semibold text-sm">@satybaldieva_psycholog</div>
             </div>
           </a>
 
-          <a
-            class="flex items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-soft ring-1 ring-purple-100 transition hover:bg-pink-50/60"
-            href="https://wa.me/996999772099"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <i class="fa-brands fa-whatsapp text-emerald-700" aria-hidden="true"></i>
+          <a class="flex items-center gap-4 rounded-2xl bg-pastel-green px-5 py-4 shadow-sm ring-1 ring-pastel-greenBorder transition hover:bg-green-200 hover-lift" href="https://wa.me/996999772099" target="_blank" rel="noreferrer">
+            <div class="bg-white p-3 rounded-full text-pastel-greenDark"><i class="fa-brands fa-whatsapp text-lg"></i></div>
             <div>
-              <div class="text-xs text-gray-600">WhatsApp</div>
-              <div class="font-semibold">Написать сообщение</div>
+              <div class="text-xs text-gray-600 mb-1">WhatsApp</div>
+              <div class="font-semibold text-sm text-pastel-greenDark">Написать сообщение</div>
             </div>
           </a>
 
-          <div class="flex items-center gap-3 rounded-2xl bg-white px-5 py-4 shadow-soft ring-1 ring-purple-100">
-            <i class="fa-solid fa-globe text-purple-600" aria-hidden="true"></i>
+          <div class="flex items-center gap-4 rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-purple-100">
+            <div class="bg-purple-50 p-3 rounded-full text-purple-500"><i class="fa-solid fa-globe"></i></div>
             <div>
-              <div class="text-xs text-gray-600">Сайт</div>
-              <div class="font-semibold">www.satybaldieva.com</div>
+              <div class="text-xs text-gray-500 mb-1">Сайт</div>
+              <div class="font-semibold text-sm">www.satybaldieva.com</div>
             </div>
           </div>
         </div>
 
-        <div class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-purple-100 pt-6 sm:flex-row">
-          <p class="text-xs text-gray-600">© <span id="y"></span> Айпери Сатыбалдиева. Все права защищены.</p>
-          <a
-            class="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-2.5 text-sm font-semibold text-gray-800 shadow-soft ring-1 ring-purple-100 transition hover:bg-pink-50/60 focus:outline-none focus:ring-2 focus:ring-purple-200"
-            href="#main"
-          >
-            <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
-            Наверх
-          </a>
+        <div class="mt-10 flex flex-col items-center justify-between gap-4 border-t border-purple-200/50 pt-6 sm:flex-row font-sans">
+          <p class="text-xs text-gray-500">© <span id="year"></span> Айпери Сатыбалдиева. Все права защищены.</p>
         </div>
       </div>
     </footer>
 
     <script>
-      document.getElementById("y").textContent = new Date().getFullYear();
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-      function clamp01(n) {
-        return Math.max(0, Math.min(1, n));
-      }
+      document.addEventListener('DOMContentLoaded', function() {
+        const heroImg = document.getElementById("hero-photo");
+        if (heroImg) {
+          const applyHeroOverlayFromImage = () => {
+            try {
+              const canvas = document.createElement("canvas");
+              const ctx = canvas.getContext("2d", { willReadFrequently: true });
+              if (!ctx) return;
 
-      function rgbToHsl(r, g, b) {
-        r /= 255;
-        g /= 255;
-        b /= 255;
-        const max = Math.max(r, g, b);
-        const min = Math.min(r, g, b);
-        let h = 0;
-        let s = 0;
-        const l = (max + min) / 2;
+              const w = 64;
+              const h = Math.round((heroImg.naturalHeight / heroImg.naturalWidth) * w) || 64;
+              canvas.width = w;
+              canvas.height = h;
+              ctx.drawImage(heroImg, 0, 0, w, h);
 
-        if (max !== min) {
-          const d = max - min;
-          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-          switch (max) {
-            case r:
-              h = (g - b) / d + (g < b ? 6 : 0);
-              break;
-            case g:
-              h = (b - r) / d + 2;
-              break;
-            case b:
-              h = (r - g) / d + 4;
-              break;
-          }
-          h /= 6;
+              const { data } = ctx.getImageData(0, 0, w, h);
+              let r = 0, g = 0, b = 0, n = 0;
+              for (let i = 0; i < data.length; i += 4) {
+                const a = data[i + 3] / 255;
+                if (a < 0.9) continue;
+                const pr = data[i], pg = data[i + 1], pb = data[i + 2];
+                const lum = 0.2126 * pr + 0.7152 * pg + 0.0722 * pb;
+                if (lum < 35 || lum > 235) continue;
+                r += pr; g += pg; b += pb; n++;
+              }
+              if (!n) return;
+              r = Math.round(r / n);
+              g = Math.round(g / n);
+              b = Math.round(b / n);
+
+              const mix = 0.78;
+              const rr = Math.round(r * (1 - mix) + 255 * mix);
+              const gg = Math.round(g * (1 - mix) + 255 * mix);
+              const bb = Math.round(b * (1 - mix) + 255 * mix);
+              document.documentElement.style.setProperty("--hero-overlay", `${rr} ${gg} ${bb}`);
+            } catch (_) {}
+          };
+
+          if (heroImg.complete && heroImg.naturalWidth) applyHeroOverlayFromImage();
+          else heroImg.addEventListener("load", applyHeroOverlayFromImage, { once: true });
         }
 
-        return { h, s, l };
-      }
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-in');
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px"
+        });
 
-      function hslToRgb(h, s, l) {
-        const hue2rgb = (p, q, t) => {
-          if (t < 0) t += 1;
-          if (t > 1) t -= 1;
-          if (t < 1 / 6) return p + (q - p) * 6 * t;
-          if (t < 1 / 2) return q;
-          if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-          return p;
-        };
-
-        let r, g, b;
-        if (s === 0) {
-          r = g = b = l;
-        } else {
-          const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-          const p = 2 * l - q;
-          r = hue2rgb(p, q, h + 1 / 3);
-          g = hue2rgb(p, q, h);
-          b = hue2rgb(p, q, h - 1 / 3);
-        }
-
-        return {
-          r: Math.round(r * 255),
-          g: Math.round(g * 255),
-          b: Math.round(b * 255),
-        };
-      }
-
-      function setVarRgb(name, rgb) {
-        document.documentElement.style.setProperty(name, `${rgb.r} ${rgb.g} ${rgb.b}`);
-      }
-
-      function pastelize(rgb, amountToWhite) {
-        const t = clamp01(amountToWhite);
-        return {
-          r: Math.round(rgb.r * (1 - t) + 255 * t),
-          g: Math.round(rgb.g * (1 - t) + 255 * t),
-          b: Math.round(rgb.b * (1 - t) + 255 * t),
-        };
-      }
-
-      function shiftHuePastel(baseRgb, hueShiftDeg, satScale, lightnessTarget) {
-        const hsl = rgbToHsl(baseRgb.r, baseRgb.g, baseRgb.b);
-        const h = (hsl.h + hueShiftDeg / 360 + 1) % 1;
-        const s = clamp01(hsl.s * satScale);
-        const l = clamp01(lightnessTarget);
-        const rgb = hslToRgb(h, s, l);
-        return pastelize(rgb, 0.25);
-      }
-
-      function extractDominantPastelFromImage(img) {
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d", { willReadFrequently: true });
-        if (!ctx) return null;
-
-        const w = 64;
-        const h = Math.round((img.naturalHeight / img.naturalWidth) * w) || 64;
-        canvas.width = w;
-        canvas.height = h;
-        ctx.drawImage(img, 0, 0, w, h);
-
-        const { data } = ctx.getImageData(0, 0, w, h);
-        let r = 0,
-          g = 0,
-          b = 0,
-          n = 0;
-
-        for (let i = 0; i < data.length; i += 4) {
-          const a = data[i + 3] / 255;
-          if (a < 0.9) continue;
-
-          const pr = data[i];
-          const pg = data[i + 1];
-          const pb = data[i + 2];
-
-          // Skip extremes (too dark/too bright), focus on mid tones
-          const lum = 0.2126 * pr + 0.7152 * pg + 0.0722 * pb;
-          if (lum < 35 || lum > 235) continue;
-
-          r += pr;
-          g += pg;
-          b += pb;
-          n++;
-        }
-
-        if (!n) return null;
-        const avg = { r: Math.round(r / n), g: Math.round(g / n), b: Math.round(b / n) };
-        return pastelize(avg, 0.72);
-      }
-
-      (function applyPaletteFromHeroPhoto() {
-        const img = document.getElementById("hero-photo");
-        if (!img) return;
-
-        const run = () => {
-          try {
-            const base = extractDominantPastelFromImage(img);
-            if (!base) return;
-
-            // Base hero background from photo
-            setVarRgb("--hero-bg", base);
-
-            // Two supporting pastels derived from base (lavender-ish and blush-ish)
-            const lavender = shiftHuePastel(base, +18, 0.95, 0.93);
-            const blush = shiftHuePastel(base, -18, 0.95, 0.94);
-            setVarRgb("--tint-lavender", lavender);
-            setVarRgb("--tint-blush", blush);
-          } catch (_) {
-            // Keep fallbacks
-          }
-        };
-
-        if (img.complete && img.naturalWidth) run();
-        else img.addEventListener("load", run, { once: true });
-      })();
+        document.querySelectorAll('.reveal').forEach((el) => {
+          observer.observe(el);
+        });
+      });
     </script>
   </body>
 </html>
-
