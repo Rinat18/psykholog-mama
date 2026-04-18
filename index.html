@@ -163,8 +163,109 @@
         max-height: 100%;
       }
 
-      .bg-quote-gradient  { background: linear-gradient(180deg, #fdf2f8, #faf5ff); }
-      .bg-hero-gradient   { background: linear-gradient(135deg, #f5f0ff, #fdf2f8 45%, #faf5ff); }
+      .bg-quote-gradient  { background: linear-gradient(180deg, #fdf2f8 0%, #faf5ff 100%); }
+      .bg-hero-gradient   { background: linear-gradient(135deg, #f0ebff 0%, #fdf2f8 45%, #faf5ff 100%); }
+      .bg-precontacts     { background: linear-gradient(135deg, #fff5f7, #fdf2f8); }
+
+      /* ── Декоративная линия под заголовком ── */
+      .heading-line {
+        display: inline-block;
+        position: relative;
+        padding-bottom: 14px;
+      }
+      .heading-line::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 50%; transform: translateX(-50%);
+        width: 56px; height: 3px;
+        background: linear-gradient(90deg, #c084fc, #f472b6, #818cf8);
+        border-radius: 2px;
+      }
+      .heading-line-left {
+        display: inline-block;
+        position: relative;
+        padding-bottom: 14px;
+      }
+      .heading-line-left::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 56px; height: 3px;
+        background: linear-gradient(90deg, #c084fc, #f472b6, #818cf8);
+        border-radius: 2px;
+      }
+
+      /* ── Тарифные карточки ── */
+      .price-card {
+        border-radius: 1.5rem;
+        padding: 2rem;
+        border: 1.5px solid #ede9fe;
+        background: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .price-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 48px rgba(168,85,247,0.14);
+      }
+      .price-card.featured {
+        border-color: #a7f3d0;
+        background: linear-gradient(145deg, #f0fdf4, #ecfdf5);
+      }
+      .price-card.featured::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #34d399, #10b981);
+      }
+      .price-card:not(.featured)::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #c084fc, #f472b6, #818cf8);
+      }
+
+      /* ── Большие кавычки для цитаты ── */
+      .quote-decor {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 7rem;
+        line-height: 0.8;
+        color: #e9d5ff;
+        font-style: italic;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      /* ── Stats bar в hero ── */
+      .stat-divider {
+        width: 1px;
+        height: 2rem;
+        background: #e9d5ff;
+      }
+
+      /* ── Nav link ── */
+      .nav-link {
+        position: relative;
+        color: #6b7280;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-link:hover { color: #9333ea; }
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px; left: 0; right: 0;
+        height: 1.5px;
+        background: linear-gradient(90deg, #c084fc, #f472b6);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+      .nav-link:hover::after { transform: scaleX(1); }
 
       :root {
         --hero-overlay: 250 245 255;
@@ -174,24 +275,32 @@
 
   <body class="text-gray-800 antialiased font-sans bg-pastel-purple">
     
-    <header class="sticky top-0 z-50 bg-pastel-purple/90 backdrop-blur-md border-b border-purple-100">
-      <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <div class="flex items-center justify-center gap-3 sm:justify-start">
-          <i class="fa-solid fa-heart text-pink-400 text-xl" aria-hidden="true"></i>
-          <div class="text-center text-sm font-medium text-gray-700 sm:text-left font-sans">
-            Психолог вашей беременности и материнства
-          </div>
-        </div>
+    <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-lg border-b border-purple-100/60 shadow-sm">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+        <!-- Logo -->
+        <a href="#reveal" class="flex items-center gap-2.5 group">
+          <i class="fa-solid fa-heart text-pink-400 text-lg group-hover:scale-110 transition-transform" aria-hidden="true"></i>
+          <span class="font-display italic text-lg font-semibold text-gray-800">Айпери Сатыбалдиева</span>
+        </a>
 
-        <div class="flex items-center justify-center sm:justify-end">
-          <a
-            class="inline-flex items-center gap-2 rounded-full bg-pastel-green px-5 py-2 text-sm font-semibold text-pastel-greenDark shadow-sm ring-1 ring-pastel-greenBorder transition hover:bg-green-200 hover-lift"
-            href="mailto:satybaldieva0312@gmail.com"
-          >
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-            Написать на почту
-          </a>
-        </div>
+        <!-- Desktop nav -->
+        <nav class="hidden lg:flex items-center gap-7" aria-label="Основная навигация">
+          <a href="#about" class="nav-link">Обо мне</a>
+          <a href="#work-with" class="nav-link">Услуги</a>
+          <a href="#pricing" class="nav-link">Тарифы</a>
+          <a href="#faq" class="nav-link">FAQ</a>
+          <a href="#certs" class="nav-link">Дипломы</a>
+        </nav>
+
+        <!-- CTA -->
+        <a
+          class="inline-flex items-center gap-2 rounded-full bg-pastel-green px-5 py-2 text-sm font-semibold text-pastel-greenDark shadow-sm ring-1 ring-pastel-greenBorder transition hover:bg-green-200 hover-lift"
+          href="https://wa.me/996999772099" target="_blank" rel="noreferrer"
+        >
+          <i class="fa-brands fa-whatsapp text-base" aria-hidden="true"></i>
+          <span class="hidden sm:inline">Записаться</span>
+          <span class="sm:hidden">WhatsApp</span>
+        </a>
       </div>
     </header>
 
@@ -204,24 +313,64 @@
         <div class="hero-blob w-48 h-48 bg-violet-200/30 bottom-0 left-1/3" aria-hidden="true" style="animation-delay: 4s;"></div>
         <!-- Hidden image for palette script -->
         <img id="hero-photo" src="Aiperi_main_photo.jpg" alt="" aria-hidden="true" class="hidden" />
-        <div class="relative z-10 mx-auto max-w-6xl px-4 text-center sm:px-6 reveal">
-          <h1 class="font-display italic text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
+        <div class="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 reveal">
+          <!-- Бейдж -->
+          <div class="inline-flex items-center gap-2 rounded-full bg-white/70 border border-purple-100 px-4 py-1.5 mb-6 text-xs font-medium text-purple-700 backdrop-blur-sm" data-delay="0">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"></span>
+            Перинатальный психолог · Бишкек / Онлайн
+          </div>
+
+          <h1 class="font-display italic text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl leading-tight">
             Айпери Сатыбалдиева
           </h1>
-          <h2 class="mt-4 font-display italic text-3xl font-medium text-gray-800 sm:text-4xl" data-delay="150">
-            Перинатальный психолог
-          </h2>
-          <p class="mt-6 font-sans text-lg font-medium text-gray-700 sm:text-xl" data-delay="300">
-            Путь к мечте: бережно, вместе.
+          <p class="mt-5 font-sans text-lg text-gray-600 sm:text-xl max-w-2xl mx-auto leading-relaxed" data-delay="200">
+            Помогаю женщинам убрать психологические барьеры на пути к материнству — бережно и с опорой на науку.
           </p>
+
+          <!-- CTA кнопки -->
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3" data-delay="350">
+            <a href="https://wa.me/996999772099" target="_blank" rel="noreferrer"
+               class="inline-flex items-center gap-2.5 rounded-full bg-pastel-green px-7 py-3.5 font-sans text-base font-semibold text-pastel-greenDark shadow-soft ring-1 ring-pastel-greenBorder hover:bg-green-200 hover-lift transition">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              Бесплатная консультация
+            </a>
+            <a href="#about" class="inline-flex items-center gap-2 rounded-full bg-white/60 border border-purple-200 px-7 py-3.5 font-sans text-base font-medium text-gray-700 hover:bg-white hover-lift transition backdrop-blur-sm">
+              Узнать обо мне
+              <i class="fa-solid fa-arrow-down text-xs text-purple-400"></i>
+            </a>
+          </div>
+
+          <!-- Stats bar -->
+          <div class="mt-12 inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-3 bg-white/60 rounded-2xl border border-purple-100/60 px-8 py-4 backdrop-blur-sm" data-delay="500">
+            <div class="text-center">
+              <div class="font-display italic text-2xl font-semibold text-gray-900">8+</div>
+              <div class="text-xs text-gray-500 font-sans mt-0.5">лет опыта</div>
+            </div>
+            <div class="stat-divider hidden sm:block"></div>
+            <div class="text-center">
+              <div class="font-display italic text-2xl font-semibold text-gray-900">100+</div>
+              <div class="text-xs text-gray-500 font-sans mt-0.5">клиентов</div>
+            </div>
+            <div class="stat-divider hidden sm:block"></div>
+            <div class="text-center">
+              <div class="font-display italic text-2xl font-semibold text-gray-900">70–90</div>
+              <div class="text-xs text-gray-500 font-sans mt-0.5">минут сессия</div>
+            </div>
+            <div class="stat-divider hidden sm:block"></div>
+            <div class="text-center">
+              <div class="font-display italic text-2xl font-semibold text-pastel-greenDark">Бесплатно</div>
+              <div class="text-xs text-gray-500 font-sans mt-0.5">первая консультация</div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- Quote (figcaption) -->
-      <section class=”bg-quote-gradient px-4 py-12 text-center sm:px-6 reveal”>
-        <div class=”mx-auto max-w-2xl glass-card rounded-3xl px-8 py-8 shadow-soft”>
-          <p class=”font-display italic text-2xl font-semibold text-gray-800 sm:text-3xl”>
-            “Ничто так не красит женщину, как материнство”.
+      <!-- Quote -->
+      <section class=”bg-quote-gradient px-4 py-14 sm:px-6 reveal”>
+        <div class=”mx-auto max-w-2xl bg-white rounded-3xl px-8 pt-4 pb-8 shadow-soft border border-purple-100 text-center relative overflow-hidden”>
+          <div class=”quote-decor select-none”>”</div>
+          <p class=”relative font-display italic text-2xl font-semibold text-gray-800 sm:text-3xl leading-snug”>
+            Ничто так не красит женщину, как материнство
           </p>
         </div>
       </section>
@@ -231,9 +380,9 @@
 
       <section id="psychology-science" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal">
         <div class="mx-auto max-w-6xl">
-          <div class="text-center mb-12">
-            <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl">Психология и репродуктивное здоровье: что говорит наука?</h2>
-            <p class="mt-4 font-sans text-lg text-gray-700 max-w-3xl mx-auto">
+          <div class="text-center mb-14">
+            <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl heading-line">Психология и репродуктивное здоровье</h2>
+            <p class="mt-6 font-sans text-lg text-gray-700 max-w-3xl mx-auto">
               Исследования в области репродуктивной психосоматики подтверждают — <strong>ДА</strong>, психологическое состояние напрямую влияет на успех лечения.
             </p>
           </div>
@@ -306,7 +455,10 @@
 
       <section id="mission" class="bg-pastel-purple pb-20 px-4 sm:px-6 text-center reveal">
         <div class="mx-auto max-w-3xl">
-          <p class="font-sans text-xl sm:text-2xl font-medium text-gray-800 leading-relaxed">
+          <div class="relative inline-block">
+            <i class="fa-solid fa-heart text-pink-200 text-5xl mb-4 block" aria-hidden="true"></i>
+          </div>
+          <p class="font-display italic text-2xl sm:text-3xl font-semibold text-gray-800 leading-relaxed">
             Моя задача — не просто поддержать вас в сложный период, но и помочь вашему телу стать максимально благоприятной средой для новой жизни.
           </p>
         </div>
@@ -336,7 +488,7 @@
           <div class="grid gap-12 lg:grid-cols-12 lg:items-start">
             
             <div class="lg:col-span-7">
-              <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl mb-6">Обо мне</h2>
+              <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl mb-8 heading-line-left">Обо мне</h2>
               <div class="space-y-4 font-sans text-base text-gray-700 leading-relaxed text-justify">
                 <p><strong>Привет! Я Айпери</strong>, психолог с 8-ми летним стажем, а с 2023 года консультирую женщин с бесплодием, помогая устранить психологические барьеры и прийти к материнству.</p>
                 <p>Мой путь в перинатальную психологию начался не с университетской скамьи, а с 15 летней борьбы за право быть мамой. Я прошла через всё: множество врачей, бесконечные обследования, лечения, диагноз «бесплодие»; надежды, сменяющиеся отчаянием и долгие годы в состоянии депрессии. Я знаю, что чувствует женщина, когда вокруг все беременеют и рожают детей, а её мир как будто замер.</p>
@@ -402,7 +554,9 @@
 
       <section id="work-with" class="bg-pastel-purple py-16 px-4 sm:px-6 reveal">
         <div class="mx-auto max-w-6xl">
-          <h2 class="font-display italic text-3xl font-semibold text-gray-900 text-center sm:text-4xl mb-12">С чем работаю:</h2>
+          <div class="text-center mb-14">
+            <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl heading-line">С чем работаю</h2>
+          </div>
           
           <div class="grid gap-6 md:grid-cols-2">
             <div class="reveal-left card-accent rounded-3xl bg-white p-8 shadow-soft border border-purple-100 hover-lift" data-delay="100">
@@ -445,31 +599,72 @@
       </svg>
 
       <section id="pricing" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal">
-        <div class="mx-auto max-w-3xl bg-white rounded-3xl p-8 sm:p-12 shadow-soft border border-purple-100 text-center">
-          <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl mb-8">Тарифы</h2>
-          
-          <ul class="space-y-6 font-sans text-lg text-gray-800">
-            <li class="flex justify-between items-center border-b border-purple-50 pb-4 flex-col sm:flex-row gap-2">
-              <span>Первичная консультация по бесплодию</span>
-              <span class="font-bold text-pastel-greenDark bg-pastel-green px-4 py-1 rounded-full text-sm sm:text-base">бесплатная</span>
-            </li>
-            <li class="flex justify-between items-center border-b border-purple-50 pb-4 flex-col sm:flex-row gap-2">
-              <span>Пакет 4 сессии</span>
-              <span class="font-bold">25 000 сомов</span>
-            </li>
-            <li class="flex justify-between items-center border-b border-purple-50 pb-4 flex-col sm:flex-row gap-2">
-              <span>Пакет 8 сессий</span>
-              <span class="font-bold">30 000 сомов</span>
-            </li>
-            <li class="flex justify-between items-center border-b border-purple-50 pb-4 flex-col sm:flex-row gap-2">
-              <span>Разовая сессия</span>
-              <span class="font-bold">7 000 сомов</span>
-            </li>
-          </ul>
-          
-          <p class="mt-8 font-sans text-sm text-gray-500">
-            * Каждая сессия длится 70-90 минут
-          </p>
+        <div class="mx-auto max-w-5xl">
+          <div class="text-center mb-14">
+            <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl heading-line">Тарифы</h2>
+            <p class="mt-6 font-sans text-base text-gray-600">Каждая сессия длится 70–90 минут</p>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <!-- Бесплатно -->
+            <div class="price-card featured reveal-scale" data-delay="100">
+              <div class="text-xs font-semibold text-emerald-600 uppercase tracking-wider mb-3 font-sans">Старт</div>
+              <h3 class="font-sans font-bold text-gray-900 text-base mb-2 leading-snug">Первичная консультация</h3>
+              <div class="mt-4 mb-1">
+                <span class="font-display italic text-3xl font-semibold text-emerald-700">Бесплатно</span>
+              </div>
+              <p class="text-xs text-gray-500 font-sans mt-2">Знакомство и первичный разбор запроса</p>
+              <a href="https://wa.me/996999772099" target="_blank" rel="noreferrer"
+                 class="mt-5 flex items-center justify-center gap-2 w-full rounded-full bg-pastel-green py-2.5 text-sm font-semibold text-pastel-greenDark ring-1 ring-pastel-greenBorder hover:bg-green-200 transition font-sans">
+                <i class="fa-brands fa-whatsapp"></i> Записаться
+              </a>
+            </div>
+
+            <!-- Разовая -->
+            <div class="price-card reveal-scale" data-delay="200">
+              <div class="text-xs font-semibold text-purple-500 uppercase tracking-wider mb-3 font-sans">Разовая</div>
+              <h3 class="font-sans font-bold text-gray-900 text-base mb-2 leading-snug">Одна сессия</h3>
+              <div class="mt-4 mb-1 flex items-end gap-1">
+                <span class="font-display italic text-3xl font-semibold text-gray-900">7 000</span>
+                <span class="text-sm text-gray-500 font-sans mb-1">сом</span>
+              </div>
+              <p class="text-xs text-gray-500 font-sans mt-2">Индивидуальная работа с конкретным запросом</p>
+              <a href="https://wa.me/996999772099" target="_blank" rel="noreferrer"
+                 class="mt-5 flex items-center justify-center gap-2 w-full rounded-full bg-purple-50 py-2.5 text-sm font-semibold text-purple-700 ring-1 ring-purple-200 hover:bg-purple-100 transition font-sans">
+                Записаться
+              </a>
+            </div>
+
+            <!-- Пакет 4 -->
+            <div class="price-card reveal-scale" data-delay="300">
+              <div class="text-xs font-semibold text-purple-500 uppercase tracking-wider mb-3 font-sans">Пакет</div>
+              <h3 class="font-sans font-bold text-gray-900 text-base mb-2 leading-snug">4 сессии</h3>
+              <div class="mt-4 mb-1 flex items-end gap-1">
+                <span class="font-display italic text-3xl font-semibold text-gray-900">25 000</span>
+                <span class="text-sm text-gray-500 font-sans mb-1">сом</span>
+              </div>
+              <p class="text-xs text-gray-500 font-sans mt-2">~6 250 сом / сессия</p>
+              <a href="https://wa.me/996999772099" target="_blank" rel="noreferrer"
+                 class="mt-5 flex items-center justify-center gap-2 w-full rounded-full bg-purple-50 py-2.5 text-sm font-semibold text-purple-700 ring-1 ring-purple-200 hover:bg-purple-100 transition font-sans">
+                Записаться
+              </a>
+            </div>
+
+            <!-- Пакет 8 -->
+            <div class="price-card reveal-scale" data-delay="400">
+              <div class="inline-block text-xs font-semibold text-pink-600 uppercase tracking-wider mb-3 font-sans">Выгодно</div>
+              <h3 class="font-sans font-bold text-gray-900 text-base mb-2 leading-snug">8 сессий</h3>
+              <div class="mt-4 mb-1 flex items-end gap-1">
+                <span class="font-display italic text-3xl font-semibold text-gray-900">30 000</span>
+                <span class="text-sm text-gray-500 font-sans mb-1">сом</span>
+              </div>
+              <p class="text-xs text-gray-500 font-sans mt-2">~3 750 сом / сессия</p>
+              <a href="https://wa.me/996999772099" target="_blank" rel="noreferrer"
+                 class="mt-5 flex items-center justify-center gap-2 w-full rounded-full bg-pink-50 py-2.5 text-sm font-semibold text-pink-700 ring-1 ring-pink-200 hover:bg-pink-100 transition font-sans">
+                Записаться
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -479,7 +674,9 @@
 
       <section id="faq" class="bg-pastel-purple py-16 px-4 sm:px-6 reveal">
         <div class="mx-auto max-w-4xl">
-          <h2 class="font-display italic text-3xl font-semibold text-gray-900 text-center sm:text-4xl mb-12">Часто задаваемые вопросы (FAQ)</h2>
+          <div class="text-center mb-14">
+            <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl heading-line">Часто задаваемые вопросы</h2>
+          </div>
           
           <div class="space-y-6">
             <div class="reveal card-accent bg-white rounded-2xl p-6 shadow-soft border border-purple-100 hover-lift" data-delay="100">
@@ -511,23 +708,31 @@
       </section>
 
       <section id="pre-contacts" class="bg-pastel-purple pb-16 px-4 sm:px-6 text-center reveal">
-        <div class="relative mx-auto max-w-3xl bg-pink-50/50 rounded-3xl p-8 border border-pink-100 overflow-hidden">
+        <div class="bg-precontacts relative mx-auto max-w-3xl rounded-3xl p-8 sm:p-10 border border-pink-100 overflow-hidden">
           <img
             src="декор/image copy 2.png"
             alt=""
             aria-hidden="true"
-            class="pointer-events-none absolute -right-10 -bottom-10 w-56 opacity-25 mix-blend-multiply sm:w-64"
+            class="pointer-events-none absolute -right-8 -bottom-8 w-48 opacity-20 mix-blend-multiply sm:w-56"
             loading="lazy"
           />
-          <p class="font-sans text-base sm:text-lg text-gray-800 leading-relaxed font-medium">
-            В моей работе нет места оценкам или советам «как надо». Я использую классический метод психоанализа и конечно мягкие техники релаксации и арт-терапия. Для меня важно, чтобы вы чувствовали себя услышанной и защищенной.
+          <i class="fa-solid fa-quote-left text-pink-200 text-3xl mb-4 block" aria-hidden="true"></i>
+          <p class="relative font-sans text-base sm:text-lg text-gray-800 leading-relaxed font-medium">
+            В моей работе нет места оценкам или советам «как надо». Я использую классический метод психоанализа, мягкие техники релаксации и арт-терапию. Для меня важно, чтобы вы чувствовали себя услышанной и защищённой.
           </p>
+          <div class="mt-6 flex items-center justify-center gap-3">
+            <div class="w-8 h-0.5 bg-pink-200 rounded"></div>
+            <span class="font-display italic text-sm text-gray-500">Айпери Сатыбалдиева</span>
+            <div class="w-8 h-0.5 bg-pink-200 rounded"></div>
+          </div>
         </div>
       </section>
 
       <section id="certs" class="bg-pastel-purple pb-20 px-4 sm:px-6 reveal">
         <div class="mx-auto max-w-6xl">
-          <h2 class="font-display italic text-3xl font-semibold text-gray-900 text-center sm:text-4xl mb-10">Дипломы и сертификаты</h2>
+          <div class="text-center mb-12">
+            <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl heading-line">Дипломы и сертификаты</h2>
+          </div>
 
           <div class="grid gap-10">
             <div>
