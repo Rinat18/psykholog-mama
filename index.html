@@ -53,6 +53,66 @@
         background-attachment: fixed;
       }
 
+      /* ── Декоративные элементы ── */
+      .deco {
+        position: absolute;
+        pointer-events: none;
+        user-select: none;
+        z-index: 1;
+      }
+
+      /* Плавающие звёздочки */
+      .deco-star {
+        animation: deco-float var(--dur, 5s) ease-in-out infinite;
+        animation-delay: var(--delay, 0s);
+        opacity: var(--op, 0.45);
+        color: var(--col, #c084fc);
+        font-size: var(--sz, 1rem);
+      }
+      @keyframes deco-float {
+        0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+        40%       { transform: translateY(-14px) rotate(40deg) scale(1.15); }
+        70%       { transform: translateY(-7px) rotate(-20deg) scale(0.9); }
+      }
+
+      /* Мерцание */
+      .deco-twinkle {
+        animation: twinkle var(--dur, 3s) ease-in-out infinite;
+        animation-delay: var(--delay, 0s);
+        color: var(--col, #f9a8d4);
+        font-size: var(--sz, 0.9rem);
+        opacity: 0;
+      }
+      @keyframes twinkle {
+        0%, 100% { opacity: 0; transform: scale(0.6); }
+        50%       { opacity: 0.7; transform: scale(1.2); }
+      }
+
+      /* Вращающийся цветок */
+      .deco-spin {
+        animation: deco-spin-anim var(--dur, 12s) linear infinite;
+        animation-delay: var(--delay, 0s);
+        opacity: var(--op, 0.18);
+        font-size: var(--sz, 2rem);
+        color: var(--col, #e879f9);
+      }
+      @keyframes deco-spin-anim {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+
+      /* Точечный паттерн на секциях */
+      .dots-bg::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, #d8b4fe 1.2px, transparent 1.2px);
+        background-size: 28px 28px;
+        opacity: 0.18;
+        pointer-events: none;
+        z-index: 0;
+      }
+
       /* ── Анимации появления при скролле ── */
       .reveal,
       .reveal-left,
@@ -312,9 +372,27 @@
       <!-- Hero Section #1 (w-full) -->
       <section id="reveal" class="bg-hero-gradient relative w-full overflow-hidden py-28 lg:py-44">
         <!-- Floating blobs -->
-        <div class="hero-blob w-80 h-80 bg-purple-200/40 -top-20 -left-20" aria-hidden="true" style="animation-delay: 0s;"></div>
-        <div class="hero-blob w-64 h-64 bg-pink-200/35 top-10 right-10" aria-hidden="true" style="animation-delay: 2s;"></div>
-        <div class="hero-blob w-48 h-48 bg-violet-200/30 bottom-0 left-1/3" aria-hidden="true" style="animation-delay: 4s;"></div>
+        <div class="hero-blob w-80 h-80 bg-purple-200/40 -top-20 -left-20" aria-hidden="true" style="animation-delay:0s;"></div>
+        <div class="hero-blob w-64 h-64 bg-pink-200/35 top-10 right-10" aria-hidden="true" style="animation-delay:2s;"></div>
+        <div class="hero-blob w-48 h-48 bg-violet-200/30 bottom-0 left-1/3" aria-hidden="true" style="animation-delay:4s;"></div>
+
+        <!-- Sparkles -->
+        <span class="deco deco-star top-12 left-[8%]"  aria-hidden="true" style="--dur:5s;--delay:0s;--col:#c084fc;--sz:1.1rem;--op:0.5;">✦</span>
+        <span class="deco deco-star top-20 right-[10%]" aria-hidden="true" style="--dur:6s;--delay:1s;--col:#f9a8d4;--sz:0.85rem;--op:0.45;">✦</span>
+        <span class="deco deco-star top-1/2 left-[5%]"  aria-hidden="true" style="--dur:7s;--delay:2s;--col:#a78bfa;--sz:1.3rem;--op:0.4;">✦</span>
+        <span class="deco deco-star bottom-16 right-[7%]" aria-hidden="true" style="--dur:5.5s;--delay:0.5s;--col:#f472b6;--sz:1rem;--op:0.45;">✦</span>
+        <span class="deco deco-star bottom-24 left-[20%]" aria-hidden="true" style="--dur:6.5s;--delay:1.5s;--col:#c084fc;--sz:0.75rem;--op:0.4;">✦</span>
+        <span class="deco deco-star top-16 left-1/2"    aria-hidden="true" style="--dur:8s;--delay:3s;--col:#fb7185;--sz:0.7rem;--op:0.35;">✦</span>
+
+        <!-- Мерцающие сердечки -->
+        <span class="deco deco-twinkle top-24 left-[15%]"  aria-hidden="true" style="--dur:3s;--delay:0.8s;--col:#f9a8d4;--sz:0.8rem;">♡</span>
+        <span class="deco deco-twinkle top-36 right-[18%]" aria-hidden="true" style="--dur:4s;--delay:1.8s;--col:#d8b4fe;--sz:1rem;">♡</span>
+        <span class="deco deco-twinkle bottom-20 left-[30%]" aria-hidden="true" style="--dur:3.5s;--delay:2.5s;--col:#fda4af;--sz:0.85rem;">♡</span>
+
+        <!-- Вращающиеся цветочки по углам -->
+        <span class="deco deco-spin top-6 right-[4%]"    aria-hidden="true" style="--dur:14s;--col:#e879f9;--sz:2.2rem;--op:0.15;">✿</span>
+        <span class="deco deco-spin bottom-4 left-[3%]"  aria-hidden="true" style="--dur:18s;--delay:2s;--col:#c084fc;--sz:1.8rem;--op:0.12;">✿</span>
+
         <!-- Hidden image for palette script -->
         <img id="hero-photo" src="Aiperi_main_photo.jpg" alt="" aria-hidden="true" class="hidden" />
         <div class="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 reveal">
@@ -372,7 +450,12 @@
       <svg class=”block w-full h-12 lg:h-24” viewBox=”0 0 1440 90” preserveAspectRatio=”none” aria-hidden=”true”>
         <path d=”M0,0 C240,90 480,90 720,45 C960,0 1200,0 1440,45 L1440,90 L0,90 Z” fill=”#fdf2f8”></path> </svg>
 
-      <section id="psychology-science" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal">
+      <section id="psychology-science" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal relative overflow-hidden">
+        <!-- Угловые украшения -->
+        <span class="deco deco-spin top-4 right-6"   aria-hidden="true" style="--dur:16s;--col:#f9a8d4;--sz:2rem;--op:0.2;">✿</span>
+        <span class="deco deco-spin bottom-4 left-6" aria-hidden="true" style="--dur:20s;--delay:3s;--col:#c084fc;--sz:1.6rem;--op:0.15;">✿</span>
+        <span class="deco deco-twinkle top-8 left-1/4"  aria-hidden="true" style="--dur:4s;--delay:1s;--col:#d8b4fe;--sz:0.9rem;">✦</span>
+        <span class="deco deco-twinkle top-8 right-1/4" aria-hidden="true" style="--dur:3.5s;--delay:2s;--col:#fda4af;--sz:0.8rem;">✦</span>
         <div class="mx-auto max-w-6xl">
           <div class="text-center mb-14">
             <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl heading-line">Психология и репродуктивное здоровье</h2>
@@ -459,7 +542,7 @@
       </section>
 
       <!-- WhatsApp button section -->
-      <section id="whatsapp" class="bg-pastel-purple pb-20 px-4 sm:px-6 text-center reveal">
+      <section id="whatsapp" class="bg-pastel-purple pb-20 px-4 sm:px-6 text-center reveal relative dots-bg overflow-hidden">
         <div class="mx-auto max-w-3xl">
           <a
             href="https://wa.me/996999772099"
@@ -592,7 +675,10 @@
         <path d="M0,0 C240,90 480,90 720,45 C960,0 1200,0 1440,45 L1440,90 L0,90 Z" fill="#fdf2f8"></path>
       </svg>
 
-      <section id="pricing" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal">
+      <section id="pricing" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal relative overflow-hidden">
+        <span class="deco deco-star top-8 left-[5%]"   aria-hidden="true" style="--dur:6s;--delay:0s;--col:#c084fc;--sz:1rem;--op:0.4;">✦</span>
+        <span class="deco deco-star top-8 right-[5%]"  aria-hidden="true" style="--dur:7s;--delay:1s;--col:#f9a8d4;--sz:0.85rem;--op:0.4;">✦</span>
+        <span class="deco deco-spin bottom-6 right-8"  aria-hidden="true" style="--dur:15s;--col:#e879f9;--sz:2rem;--op:0.15;">✿</span>
         <div class="mx-auto max-w-5xl">
           <div class="text-center mb-14">
             <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl heading-line">Тарифы</h2>
@@ -791,7 +877,11 @@
 
     </main>
 
-    <footer class="bg-purple-100/50 border-t border-purple-100">
+    <footer class="bg-purple-100/50 border-t border-purple-100 relative overflow-hidden">
+      <span class="deco deco-spin top-4 left-6"   aria-hidden="true" style="--dur:18s;--col:#c084fc;--sz:1.8rem;--op:0.12;">✿</span>
+      <span class="deco deco-spin top-4 right-6"  aria-hidden="true" style="--dur:22s;--delay:4s;--col:#f9a8d4;--sz:1.5rem;--op:0.12;">✿</span>
+      <span class="deco deco-twinkle top-10 left-1/3" aria-hidden="true" style="--dur:3s;--delay:1s;--col:#d8b4fe;--sz:0.8rem;">✦</span>
+      <span class="deco deco-twinkle top-10 right-1/3" aria-hidden="true" style="--dur:4s;--delay:2s;--col:#fda4af;--sz:0.75rem;">✦</span>
       <div class="mx-auto max-w-6xl px-4 py-12 text-gray-800 sm:px-6">
         <div class="text-center mb-8">
           <h2 class="font-display italic text-3xl font-semibold text-gray-900">Контакты</h2>
