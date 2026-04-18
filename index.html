@@ -228,15 +228,19 @@
         background: linear-gradient(90deg, #c084fc, #f472b6, #818cf8);
       }
 
-      /* ── Большие кавычки для цитаты ── */
+      /* ── Большие кавычки для цитаты (абсолютно, не в потоке) ── */
       .quote-decor {
+        position: absolute;
+        top: -0.5rem;
+        left: 1.25rem;
         font-family: 'Cormorant Garamond', serif;
-        font-size: 7rem;
-        line-height: 0.8;
+        font-size: 6rem;
+        line-height: 1;
         color: #e9d5ff;
         font-style: italic;
         pointer-events: none;
         user-select: none;
+        z-index: 0;
       }
 
       /* ── Stats bar в hero ── */
@@ -366,10 +370,10 @@
       </section>
 
       <!-- Quote -->
-      <section class=”bg-quote-gradient px-4 py-14 sm:px-6 reveal”>
-        <div class=”mx-auto max-w-2xl bg-white rounded-3xl px-8 pt-4 pb-8 shadow-soft border border-purple-100 text-center relative overflow-hidden”>
-          <div class=”quote-decor select-none”>”</div>
-          <p class=”relative font-display italic text-2xl font-semibold text-gray-800 sm:text-3xl leading-snug”>
+      <section class=”bg-quote-gradient px-4 py-14 sm:px-6”>
+        <div class=”mx-auto max-w-2xl bg-white rounded-3xl px-10 pt-10 pb-8 shadow-soft border border-purple-100 text-center relative”>
+          <div class=”quote-decor” aria-hidden=”true”>”</div>
+          <p class=”relative z-10 font-display italic text-2xl font-semibold text-gray-800 sm:text-3xl leading-snug”>
             Ничто так не красит женщину, как материнство
           </p>
         </div>
