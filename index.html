@@ -47,27 +47,91 @@
 
     <style>
       html { scroll-behavior: smooth; }
-      
-      /* Плавное появление элементов */
-      .reveal {
+
+      body {
+        background: linear-gradient(160deg, #faf5ff 0%, #fdf2f8 35%, #faf5ff 65%, #f5f0ff 100%);
+        background-attachment: fixed;
+      }
+
+      /* ── Анимации появления при скролле ── */
+      .reveal,
+      .reveal-left,
+      .reveal-right,
+      .reveal-scale {
         opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        transition: opacity 0.75s ease-out, transform 0.75s ease-out;
       }
-      .reveal.is-in {
+      .reveal        { transform: translateY(28px); }
+      .reveal-left   { transform: translateX(-36px); }
+      .reveal-right  { transform: translateX(36px); }
+      .reveal-scale  { transform: scale(0.91); }
+
+      .reveal.is-in,
+      .reveal-left.is-in,
+      .reveal-right.is-in,
+      .reveal-scale.is-in {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate(0) scale(1);
       }
-      
+
+      /* Stagger delays */
+      [data-delay="100"] { transition-delay: 100ms; }
+      [data-delay="150"] { transition-delay: 150ms; }
+      [data-delay="200"] { transition-delay: 200ms; }
+      [data-delay="300"] { transition-delay: 300ms; }
+      [data-delay="400"] { transition-delay: 400ms; }
+      [data-delay="500"] { transition-delay: 500ms; }
+
+      /* ── Hover-lift с цветной тенью ── */
       .hover-lift {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       .hover-lift:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 14px 40px rgba(88, 28, 135, 0.12);
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(168, 85, 247, 0.16);
       }
 
-      /* Единый размер превью дипломов/сертификатов */
+      /* ── Карточка с градиентной полоской сверху ── */
+      .card-accent {
+        position: relative;
+        overflow: hidden;
+      }
+      .card-accent::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #c084fc 0%, #f472b6 50%, #818cf8 100%);
+        border-radius: 3px 3px 0 0;
+      }
+
+      /* ── Иконка с градиентом ── */
+      .icon-gradient {
+        background: linear-gradient(135deg, #e9d5ff 0%, #fbcfe8 100%);
+      }
+
+      /* ── Плавающие blobs в hero ── */
+      .hero-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        pointer-events: none;
+        animation: blob-float 8s ease-in-out infinite alternate;
+      }
+      @keyframes blob-float {
+        from { transform: translateY(0) scale(1); }
+        to   { transform: translateY(-20px) scale(1.05); }
+      }
+
+      /* ── Стеклянный эффект для quote ── */
+      .glass-card {
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.75);
+      }
+
+      /* ── Единый размер превью дипломов/сертификатов ── */
       .cert-frame {
         aspect-ratio: 3 / 4;
         width: 100%;
@@ -88,21 +152,22 @@
         height: auto;
         object-fit: contain;
       }
-      /* 1-й диплом: 90° по часовой + масштаб, чтобы не обрезалось */
       .cert-frame img.cert-diploma-1 {
         transform: rotate(90deg) scale(0.68);
         max-width: 100%;
         max-height: 100%;
       }
-      /* 4-й диплом:90° + уменьшение масштаба */
       .cert-frame img.cert-diploma-4 {
         transform: rotate(90deg) scale(0.68);
         max-width: 100%;
         max-height: 100%;
       }
 
+      .bg-quote-gradient  { background: linear-gradient(180deg, #fdf2f8, #faf5ff); }
+      .bg-hero-gradient   { background: linear-gradient(135deg, #f5f0ff, #fdf2f8 45%, #faf5ff); }
+
       :root {
-        --hero-overlay: 250 245 255; /* fallback lavender */
+        --hero-overlay: 250 245 255;
       }
     </style>
   </head>
@@ -132,27 +197,33 @@
 
     <main>
       <!-- Hero Section #1 (w-full) -->
-      <section id="reveal" class="relative w-full overflow-hidden bg-pastel-purple py-24 lg:py-36 reveal">
-        <!-- Hidden image for palette script (no visible background) -->
+      <section id="reveal" class="bg-hero-gradient relative w-full overflow-hidden py-28 lg:py-44">
+        <!-- Floating blobs -->
+        <div class="hero-blob w-80 h-80 bg-purple-200/40 -top-20 -left-20" aria-hidden="true" style="animation-delay: 0s;"></div>
+        <div class="hero-blob w-64 h-64 bg-pink-200/35 top-10 right-10" aria-hidden="true" style="animation-delay: 2s;"></div>
+        <div class="hero-blob w-48 h-48 bg-violet-200/30 bottom-0 left-1/3" aria-hidden="true" style="animation-delay: 4s;"></div>
+        <!-- Hidden image for palette script -->
         <img id="hero-photo" src="Aiperi_main_photo.jpg" alt="" aria-hidden="true" class="hidden" />
-        <div class="relative z-10 mx-auto max-w-6xl px-4 text-center sm:px-6">
+        <div class="relative z-10 mx-auto max-w-6xl px-4 text-center sm:px-6 reveal">
           <h1 class="font-display italic text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
             Айпери Сатыбалдиева
           </h1>
-          <h2 class="mt-4 font-display italic text-3xl font-medium text-gray-800 sm:text-4xl">
+          <h2 class="mt-4 font-display italic text-3xl font-medium text-gray-800 sm:text-4xl" data-delay="150">
             Перинатальный психолог
           </h2>
-          <p class="mt-6 font-sans text-lg font-medium text-gray-700 sm:text-xl">
+          <p class="mt-6 font-sans text-lg font-medium text-gray-700 sm:text-xl" data-delay="300">
             Путь к мечте: бережно, вместе.
           </p>
         </div>
       </section>
 
       <!-- Quote (figcaption) -->
-      <section class="bg-pastel-purple px-4 py-10 text-center sm:px-6 reveal">
-        <p class="font-display italic text-2xl font-semibold text-gray-900 sm:text-3xl">
-          “Ничто так не красит женщину, как материнство”.
-        </p>
+      <section class=”bg-quote-gradient px-4 py-12 text-center sm:px-6 reveal”>
+        <div class=”mx-auto max-w-2xl glass-card rounded-3xl px-8 py-8 shadow-soft”>
+          <p class=”font-display italic text-2xl font-semibold text-gray-800 sm:text-3xl”>
+            “Ничто так не красит женщину, как материнство”.
+          </p>
+        </div>
       </section>
 
       <svg class="block w-full h-12 lg:h-24" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
@@ -168,27 +239,27 @@
           </div>
 
           <div class="grid gap-6 md:grid-cols-3">
-            <div class="rounded-2xl bg-white p-8 shadow-soft border border-purple-100 hover-lift text-center">
-              <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-purple-50 mb-4">
-                <i class="fa-solid fa-chart-line text-purple-400"></i>
+            <div class="reveal-scale card-accent rounded-2xl bg-white p-8 shadow-soft border border-purple-100 hover-lift text-center" data-delay="100">
+              <div class="mx-auto grid h-14 w-14 place-items-center rounded-2xl icon-gradient mb-5">
+                <i class="fa-solid fa-chart-line text-purple-500 text-xl"></i>
               </div>
               <h3 class="font-sans font-bold text-lg text-gray-900 mb-3">Эффективность ЭКО</h3>
               <p class="font-sans text-sm text-gray-700 leading-relaxed">
                 Согласно мета-анализам международных исследований, у пар, получающих психологическую поддержку, вероятность наступления беременности в циклах ЭКО и ИИ увеличивается в среднем на <strong>45%</strong>.*
               </p>
             </div>
-            <div class="rounded-2xl bg-white p-8 shadow-soft border border-purple-100 hover-lift text-center">
-              <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-purple-50 mb-4">
-                <i class="fa-solid fa-leaf text-purple-400"></i>
+            <div class="reveal-scale card-accent rounded-2xl bg-white p-8 shadow-soft border border-purple-100 hover-lift text-center" data-delay="250">
+              <div class="mx-auto grid h-14 w-14 place-items-center rounded-2xl icon-gradient mb-5">
+                <i class="fa-solid fa-leaf text-purple-500 text-xl"></i>
               </div>
               <h3 class="font-sans font-bold text-lg text-gray-900 mb-3">Снижение стресса</h3>
               <p class="font-sans text-sm text-gray-700 leading-relaxed">
                 Программы по снижению стресса (Mind-Body) показывают впечатляющие результаты: в группах с психологическим сопровождением частота зачатия <strong>в 2 раза выше</strong>, чем в группах без него.
               </p>
             </div>
-            <div class="rounded-2xl bg-white p-8 shadow-soft border border-purple-100 hover-lift text-center">
-              <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-purple-50 mb-4">
-                <i class="fa-solid fa-shield-heart text-purple-400"></i>
+            <div class="reveal-scale card-accent rounded-2xl bg-white p-8 shadow-soft border border-purple-100 hover-lift text-center" data-delay="400">
+              <div class="mx-auto grid h-14 w-14 place-items-center rounded-2xl icon-gradient mb-5">
+                <i class="fa-solid fa-shield-heart text-purple-500 text-xl"></i>
               </div>
               <h3 class="font-sans font-bold text-lg text-gray-900 mb-3">Профилактика «выгорания»</h3>
               <p class="font-sans text-sm text-gray-700 leading-relaxed">
@@ -334,32 +405,32 @@
           <h2 class="font-display italic text-3xl font-semibold text-gray-900 text-center sm:text-4xl mb-12">С чем работаю:</h2>
           
           <div class="grid gap-6 md:grid-cols-2">
-            <div class="rounded-3xl bg-white p-8 shadow-sm border border-purple-200 hover-lift">
-              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-2">Бесплодие</h3>
+            <div class="reveal-left card-accent rounded-3xl bg-white p-8 shadow-soft border border-purple-100 hover-lift" data-delay="100">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-3">Бесплодие</h3>
               <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
                 Иногда организм женщины блокирует зачатие из-за бессознательных страхов (вторичные выгоды, страх потери контроля, травмы прошлого). Вместе мы ищем ваши внутренние блоки и скрытые страхи, препятствующие наступлению материнства; и работаем над ними. Восстанавливаем ресурсное состояние тела, которое давно находится в стрессовом замирании. Моя роль как психолога - помочь вам выйти из режима «выживания» и переключить ресурсы организма на продолжение рода. Психолог работает не «вместо» врачей, а «вместе» с ними, повышая эффективность медицинских процедур.
               </p>
             </div>
-            <div class="rounded-3xl bg-white p-8 shadow-sm border border-purple-200 hover-lift">
-              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-2">Подготовка и сопровождение ЭКО</h3>
+            <div class="reveal-right card-accent rounded-3xl bg-white p-8 shadow-soft border border-purple-100 hover-lift" data-delay="100">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-3">Подготовка и сопровождение ЭКО</h3>
               <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
                 ЭКО – это колоссальная нагрузка на психоэмоциональную устойчивость женщины. Страх провала, эмоциональные качели, изматывающее ожидание ХГЧ. Вместе мы создадим «психологический кокон» вокруг вашего протокола, помогу снизить уровень тревоги, который мешает имплантации. Создадим ту самую психологическую - «принимающую» среду для зарождения в ней новой жизни.
               </p>
             </div>
-            <div class="rounded-3xl bg-white p-8 shadow-sm border border-purple-200 hover-lift">
-              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-2">Донорские программы</h3>
+            <div class="reveal-left card-accent rounded-3xl bg-white p-8 shadow-soft border border-purple-100 hover-lift" data-delay="200">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-3">Донорские программы</h3>
               <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
                 Сложные чувства по поводу генетической связи - «будет ли ребенок моим?», чувство вины, страх осуждения со стороны близких и общества. А что я скажу, когда он вырастит? Вместе с вами бережно работаем над принятием донорского материала. Меняем образ «чужеродного» в образ «своего», «дара судьбы», чтобы вы могли войти в материнство с чистым сердцем и полной уверенностью в своей роли матери.
               </p>
             </div>
-            <div class="rounded-3xl bg-white p-8 shadow-sm border border-purple-200 hover-lift">
-              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-2">Перинатальные потери</h3>
+            <div class="reveal-right card-accent rounded-3xl bg-white p-8 shadow-soft border border-purple-100 hover-lift" data-delay="200">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-3">Перинатальные потери</h3>
               <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
                 Горе после замершей беременности, выкидыша, неудачного протокола ЭКО или потери малыша в родах должно быть прожито правильно, в противном случае это будет влиять на дальнейшие успехи завести детей. Я сопровождаю в этом процессе проживания горя, чтобы оно не стало «застывшим». Помогу вам избавиться от чувства несправедливости, пустоты и страха, что это повторится снова. Это даст вам силы, внутренние ресурсы и психологическое разрешение на новую попытку и новую жизнь.
               </p>
             </div>
-            <div class="rounded-3xl bg-white p-8 shadow-sm border border-purple-200 hover-lift md:col-span-2">
-              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-2 text-center md:text-left">Материнство</h3>
+            <div class="reveal card-accent rounded-3xl bg-white p-8 shadow-soft border border-purple-100 hover-lift md:col-span-2" data-delay="300">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-3 text-center md:text-left">Материнство</h3>
               <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
                 Став матерью уже в прилично осознанном возрасте (в 32 года) я пережила на себе все сложности нового состояния - материнства. Ожидания от материнства могут не совпасть с реальностью, вы чувствуете вину или тревогу. Помогу вам адаптироваться в новой роли и получать радости от контакта с ребенком.<br><br>
                 Также женщины иногда чувствуют непринятие своего малыша, об этом не принято говорить никому. У этого есть свои объяснения: возможно у нее был негативный опыт детско-родительских отношений. И здесь очень важно найти, и проработать каждый болезненный момент.
@@ -411,7 +482,7 @@
           <h2 class="font-display italic text-3xl font-semibold text-gray-900 text-center sm:text-4xl mb-12">Часто задаваемые вопросы (FAQ)</h2>
           
           <div class="space-y-6">
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-purple-100">
+            <div class="reveal card-accent bg-white rounded-2xl p-6 shadow-soft border border-purple-100 hover-lift" data-delay="100">
               <p class="font-sans font-bold text-gray-900 mb-2">
                 <span class="text-purple-400 mr-2">В:</span> Врачи говорят, что я здорова, но беременность не наступает. Может ли это быть «в голове»?
               </p>
@@ -419,7 +490,7 @@
                 <span class="text-pastel-greenDark font-bold mr-2">О:</span> Да, это называют психологическим бесплодием. Когда организм находится в состоянии хронического стресса или скрытых страхов, мозг подает сигнал «сейчас не время/небезопасно», и репродуктивная система «засыпает». Психолог работает над тем, чтобы найти и устранить эти внутренние блоки.
               </p>
             </div>
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-purple-100">
+            <div class="reveal card-accent bg-white rounded-2xl p-6 shadow-soft border border-purple-100 hover-lift" data-delay="250">
               <p class="font-sans font-bold text-gray-900 mb-2">
                 <span class="text-purple-400 mr-2">В:</span> Как перестать думать только о планировании? Кажется, моя жизнь превратилась в ожидание овуляции.
               </p>
@@ -427,7 +498,7 @@
                 <span class="text-pastel-greenDark font-bold mr-2">О:</span> Это состояние «зацикленности» изматывает психику. В терапии мы возвращаем вам вкус жизни вне диагнозов. Как ни парадоксально, но когда фокус внимания смещается со сверхзадачи на саму себя, шансы на успех возрастают.
               </p>
             </div>
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-purple-100">
+            <div class="reveal card-accent bg-white rounded-2xl p-6 shadow-soft border border-purple-100 hover-lift" data-delay="400">
               <p class="font-sans font-bold text-gray-900 mb-2">
                 <span class="text-purple-400 mr-2">В:</span> Боюсь очередной неудачи в протоколе. Как пережить это ожидание ХГЧ?
               </p>
@@ -636,11 +707,11 @@
             }
           });
         }, {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px"
+          threshold: 0.08,
+          rootMargin: "0px 0px -40px 0px"
         });
 
-        document.querySelectorAll('.reveal').forEach((el) => {
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach((el) => {
           observer.observe(el);
         });
       });
