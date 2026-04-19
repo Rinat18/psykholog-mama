@@ -399,6 +399,13 @@
         <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
           <div class="flex flex-col lg:flex-row lg:items-end lg:gap-0">
 
+            <!-- Малыш на мобильном — сверху по центру -->
+            <div class="flex justify-center lg:hidden mb-2">
+              <img id="baby-sticker-mobile" src="baby.png" alt="" aria-hidden="true"
+                class="w-48 pointer-events-none"
+                style="filter: drop-shadow(0 8px 28px rgba(168,85,247,0.18));" />
+            </div>
+
             <!-- Текст (центрированный) -->
             <div class="flex-1 text-center reveal relative z-10">
               <div class="inline-flex items-center gap-2 rounded-full bg-white/70 border border-purple-100 px-4 py-1.5 mb-6 text-xs font-medium text-purple-700 backdrop-blur-sm">
@@ -1023,6 +1030,8 @@
       }
       const babyImg = document.getElementById('baby-sticker');
       if (babyImg) removeWhiteBg(babyImg);
+      const babyMobile = document.getElementById('baby-sticker-mobile');
+      if (babyMobile) removeWhiteBg(babyMobile);
       const backAboutImg = document.getElementById('backaboutme-img');
       if (backAboutImg) removeLightBg(backAboutImg);
 
