@@ -396,8 +396,11 @@
         <!-- Hidden image for palette script -->
         <img id="hero-photo" src="Aiperi_main_photo.jpg" alt="" aria-hidden="true" class="hidden" />
 
-        <div class="relative z-10 mx-auto max-w-3xl px-4 sm:px-6 text-center reveal">
-              <!-- Бейдж -->
+        <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="flex flex-col lg:flex-row lg:items-end lg:gap-0">
+
+            <!-- Текст (центрированный) -->
+            <div class="flex-1 text-center reveal">
               <div class="inline-flex items-center gap-2 rounded-full bg-white/70 border border-purple-100 px-4 py-1.5 mb-6 text-xs font-medium text-purple-700 backdrop-blur-sm">
                 <span class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"></span>
                 Перинатальный психолог · Бишкек / Онлайн
@@ -445,18 +448,21 @@
                   <div class="text-xs text-gray-500 font-sans mt-0.5">первая консультация</div>
                 </div>
               </div>
+            </div>
 
-            <!-- Ребёнок справа (абсолютный, не влияет на текст) -->
-            <img
-              id="baby-sticker"
-              src="baby.png"
-              alt=""
-              aria-hidden="true"
-              class="hidden lg:block absolute w-[32rem] xl:w-[38rem] reveal-right"
-              style="bottom: -4rem; right: -3rem; filter: drop-shadow(0 8px 28px rgba(168,85,247,0.18));"
-              data-delay="200"
-            />
+            <!-- Ребёнок справа — в потоке, не перекрывает текст -->
+            <div class="hidden lg:block w-72 xl:w-96 flex-shrink-0 self-end reveal-right" data-delay="200">
+              <img
+                id="baby-sticker"
+                src="baby.png"
+                alt=""
+                aria-hidden="true"
+                class="w-full"
+                style="filter: drop-shadow(0 8px 28px rgba(168,85,247,0.18));"
+              />
+            </div>
 
+          </div>
         </div>
       </section>
 
