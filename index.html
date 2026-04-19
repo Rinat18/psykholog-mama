@@ -213,7 +213,7 @@
         object-fit: contain;
       }
       .cert-frame img.cert-diploma-1 {
-        transform: rotate(90deg) scale(0.68);
+        transform: rotate(-90deg) scale(0.68);
         max-width: 100%;
         max-height: 100%;
       }
@@ -449,11 +449,12 @@
             <!-- Ребёнок справа -->
             <div class="hidden lg:flex lg:w-80 xl:w-96 flex-shrink-0 items-end justify-center reveal-right" data-delay="200">
               <img
+                id="baby-sticker"
                 src="baby.png"
                 alt=""
                 aria-hidden="true"
-                class="w-full drop-shadow-lg"
-                style="mix-blend-mode: multiply; filter: drop-shadow(0 8px 24px rgba(168,85,247,0.12));"
+                class="w-full"
+                style="filter: drop-shadow(0 8px 28px rgba(168,85,247,0.18));"
               />
             </div>
 
@@ -626,10 +627,9 @@
               <div class="sticky top-24">
                 <div class="rounded-[2rem] overflow-hidden shadow-soft border-4 border-white">
                   <img
-                    src="image-placeholder-aiperi.jpg"
+                    src="aboutme.JPG"
                     alt="Айпери Сатыбалдиева"
                     class="w-full object-cover aspect-[3/4]"
-                    onerror="this.src='Aiperi_main_photo.jpg';"
                   />
                 </div>
               </div>
@@ -858,14 +858,14 @@
             <div>
               <h3 class="font-sans text-xl font-semibold text-gray-900 mb-5 text-center sm:text-left">Сертификаты</h3>
               <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                 <a href="сертификаты/image copy.png" target="_blank" rel="noreferrer" class="block hover-lift">
+                  <div class="cert-frame">
+                    <img src="сертификаты/image copy.png" alt="Сертификат" loading="lazy" />
+                  </div>
+                </a>
                 <a href="сертификаты/image.png" target="_blank" rel="noreferrer" class="block hover-lift">
                   <div class="cert-frame">
                     <img src="сертификаты/image.png" alt="Сертификат" loading="lazy" />
-                  </div>
-                </a>
-                <a href="сертификаты/image copy.png" target="_blank" rel="noreferrer" class="block hover-lift">
-                  <div class="cert-frame">
-                    <img src="сертификаты/image copy.png" alt="Сертификат" loading="lazy" />
                   </div>
                 </a>
                 <a href="сертификаты/image copy 2.png" target="_blank" rel="noreferrer" class="block hover-lift">
@@ -887,7 +887,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </section>1
 
     </main>
 
@@ -961,6 +961,34 @@
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Убираем белый фон у baby-sticker через Canvas
+      function removeWhiteBg(img) {
+        const process = () => {
+          try {
+            const c = document.createElement('canvas');
+            c.width = img.naturalWidth;
+            c.height = img.naturalHeight;
+            const ctx = c.getContext('2d', { willReadFrequently: true });
+            ctx.drawImage(img, 0, 0);
+            const id = ctx.getImageData(0, 0, c.width, c.height);
+            const d = id.data;
+            for (let i = 0; i < d.length; i += 4) {
+              const r = d[i], g = d[i+1], b = d[i+2];
+              const whiteness = Math.min(r, g, b);
+              if (whiteness > 210) {
+                d[i+3] = Math.round(d[i+3] * (1 - (whiteness - 210) / 45));
+              }
+            }
+            ctx.putImageData(id, 0, 0);
+            img.src = c.toDataURL('image/png');
+          } catch(_) {}
+        };
+        if (img.complete && img.naturalWidth) process();
+        else img.addEventListener('load', process, { once: true });
+      }
+      const babyImg = document.getElementById('baby-sticker');
+      if (babyImg) removeWhiteBg(babyImg);
 
       document.addEventListener('DOMContentLoaded', function() {
         const heroImg = document.getElementById("hero-photo");
