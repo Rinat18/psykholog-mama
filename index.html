@@ -450,17 +450,16 @@
               </div>
             </div>
 
-            <!-- Ребёнок справа — в потоке, не перекрывает текст -->
-            <div class="hidden lg:block w-[36rem] xl:w-[48rem] flex-shrink-0 self-end reveal-right" data-delay="200">
-              <img
-                id="baby-sticker"
-                src="baby.png"
-                alt=""
-                aria-hidden="true"
-                class="w-full"
-                style="filter: drop-shadow(0 8px 28px rgba(168,85,247,0.18));"
-              />
-            </div>
+            <!-- Ребёнок — абсолют, не толкает текст -->
+            <img
+              id="baby-sticker"
+              src="baby.png"
+              alt=""
+              aria-hidden="true"
+              class="hidden lg:block absolute bottom-0 right-0 w-[36rem] xl:w-[48rem] reveal-right pointer-events-none"
+              style="filter: drop-shadow(0 8px 28px rgba(168,85,247,0.18));"
+              data-delay="200"
+            />
 
           </div>
         </div>
