@@ -342,7 +342,7 @@
     <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-lg border-b border-purple-100/60 shadow-sm">
       <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <!-- Logo -->
-        <a href="#reveal" class="flex items-center gap-2.5 group">
+        <a href="#reveal" class="flex items-center gap-1 group">
           <i class="fa-solid fa-heart text-pink-400 text-lg group-hover:scale-110 transition-transform" aria-hidden="true"></i>
           <span class="font-display italic text-lg font-semibold text-gray-800">Айпери Сатыбалдиева</span>
         </a>
@@ -370,7 +370,7 @@
 
     <main>
       <!-- Hero Section #1 (w-full) -->
-      <section id="reveal" class="bg-hero-gradient relative w-full overflow-hidden py-28 lg:py-44">
+      <section id="reveal" class="bg-hero-gradient relative w-full overflow-hidden pt-12 pb-6 lg:pt-20 lg:pb-8">
         <!-- Floating blobs -->
         <div class="hero-blob w-80 h-80 bg-purple-200/40 -top-20 -left-20" aria-hidden="true" style="animation-delay:0s;"></div>
         <div class="hero-blob w-64 h-64 bg-pink-200/35 top-10 right-10" aria-hidden="true" style="animation-delay:2s;"></div>
@@ -465,10 +465,10 @@
         </div>
       </section>
 
-      <svg class=”block w-full h-12 lg:h-24” viewBox=”0 0 1440 90” preserveAspectRatio=”none” aria-hidden=”true”>
+      <svg class=”block w-full h-3 lg:h-6” viewBox=”0 0 1440 90” preserveAspectRatio=”none” aria-hidden=”true”>
         <path d=”M0,0 C240,90 480,90 720,45 C960,0 1200,0 1440,45 L1440,90 L0,90 Z” fill=”#fdf2f8”></path> </svg>
 
-      <section id="psychology-science" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal relative overflow-hidden">
+      <section id="psychology-science" class="bg-pastel-pink py-6 px-4 sm:px-6 reveal relative overflow-hidden">
         <!-- Угловые украшения -->
         <span class="deco deco-spin top-4 right-6"   aria-hidden="true" style="--dur:16s;--col:#f9a8d4;--sz:2rem;--op:0.2;">✿</span>
         <span class="deco deco-spin bottom-4 left-6" aria-hidden="true" style="--dur:20s;--delay:3s;--col:#c084fc;--sz:1.6rem;--op:0.15;">✿</span>
@@ -479,7 +479,7 @@
             <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl heading-line">Психология и репродуктивное здоровье: <br/>
             ЧТО ГОВОРИТ НАУКА?            </h2>
             <p class="mt-6 font-sans text-lg text-gray-700 max-w-3xl mx-auto">
-              Исследования в области репродуктивной психосоматики подтверждают — <strong>ДА</strong>, психологическое состояние напрямую влияет на успех лечения.
+              Исследования в области репродуктивной психосоматики подтверждают — психологическое состояние напрямую влияет на успех лечения
             </p>
           </div>
 
@@ -520,10 +520,10 @@
         </div>
       </section>
 
-      <svg class="block w-full h-12 lg:h-24 bg-pastel-pink" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <svg class="block w-full h-3 lg:h-6 bg-pastel-pink" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0,90 C240,0 480,0 720,45 C960,90 1200,90 1440,45 L1440,0 L0,0 Z" fill="#faf5ff"></path> </svg>
 
-      <section id="how-it-works" class="bg-pastel-purple py-16 px-4 sm:px-6 reveal">
+      <section id="how-it-works" class="bg-pastel-purple py-6 px-4 sm:px-6 reveal">
         <div class="mx-auto max-w-4xl bg-white rounded-3xl p-8 sm:p-12 shadow-soft border border-purple-100">
           <h2 class="font-display italic text-3xl font-semibold text-gray-900 text-center sm:text-4xl">Как это работает?</h2>
           <p class="mt-4 font-sans text-base text-gray-700 text-center leading-relaxed">
@@ -550,19 +550,22 @@
         </div>
       </section>
 
-      <section id="mission" class="bg-pastel-purple pb-20 px-4 sm:px-6 text-center reveal">
-        <div class="mx-auto max-w-3xl">
-          <div class="relative inline-block">
-            <i class="fa-solid fa-heart text-pink-200 text-5xl mb-4 block" aria-hidden="true"></i>
-          </div>
-          <p class="font-display italic text-2xl sm:text-3xl font-semibold text-gray-800 leading-relaxed">
+      <section id="mission" class="bg-pastel-purple pb-6 px-4 sm:px-6 text-center reveal">
+        <div class="mt-12 bg-precontacts relative mx-auto max-w-3xl rounded-3xl p-8 sm:p-10 border border-pink-100 overflow-hidden">
+          <img id="backaboutme-img" src="backaboutme.png" alt="" class="h-20 w-auto mb-4 mx-auto" />
+          <p class="relative font-sans text-base sm:text-lg text-gray-800 leading-relaxed font-medium">
             Моя задача — не просто поддержать вас в сложный период, но и помочь вашему телу стать максимально благоприятной средой для новой жизни.
           </p>
+          <div class="mt-6 flex items-center justify-center gap-3">
+            <div class="w-8 h-0.5 bg-pink-200 rounded"></div>
+            <span class="font-display italic text-sm text-gray-500">Айпери Сатыбалдиева</span>
+            <div class="w-8 h-0.5 bg-pink-200 rounded"></div>
+          </div>
         </div>
       </section>
 
       <!-- WhatsApp button section -->
-      <section id="whatsapp" class="bg-pastel-purple pb-20 px-4 sm:px-6 text-center reveal relative dots-bg overflow-hidden">
+      <section id="whatsapp" class="bg-pastel-purple pb-6 px-4 sm:px-6 text-center reveal relative dots-bg overflow-hidden">
         <div class="mx-auto max-w-3xl">
           <a
             href="https://wa.me/996999772099"
@@ -580,11 +583,16 @@
         <path d="M0,0 C240,90 480,90 720,45 C960,0 1200,0 1440,45 L1440,90 L0,90 Z" fill="#fdf2f8"></path>
       </svg>
 
-      <section id="about" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal">
+      <section id="about" class="bg-pastel-pink py-6 px-4 sm:px-6 reveal">
         <div class="mx-auto max-w-6xl">
-          <div class="grid gap-12 lg:grid-cols-12 lg:items-start">
-            
-            <div class="lg:col-span-7">
+          <!-- About text with photo background -->
+          <div class="relative rounded-[2.5rem] overflow-hidden shadow-soft reveal-scale min-h-[600px] lg:min-h-[700px]">
+            <!-- Background photo -->
+            <div class="absolute inset-0 bg-cover bg-no-repeat" style="background-image: url('aboutme.JPG'); background-position: top center;"></div>
+            <!-- Gradient overlay: white on left, transparent on right -->
+            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/20"></div>
+            <!-- Text content -->
+            <div class="relative z-10 p-8 sm:p-12 lg:p-16 max-w-2xl">
               <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl mb-8 heading-line-left">Обо мне</h2>
               <div class="space-y-4 font-sans text-base text-gray-700 leading-relaxed text-justify">
                 <p><strong>Привет! Я Айпери</strong>, психолог с 8-ми летним стажем, а с 2023 года консультирую женщин с бесплодием, помогая устранить психологические барьеры и прийти к материнству.</p>
@@ -592,37 +600,13 @@
                 <p>Сегодня я — счастливая мама. Мой путь показал: психологическое состояние — это не «приложение» к анализам, а фундамент, на котором строится успех каждой медицинской процедуры. Теперь я помогаю другим женщинам пройти эту дорогу без лишних травм, чувствуя профессиональную опору и возвращая себе право на счастье. Я не просто психолог. Я человек, который был на вашем месте и знает выход.</p>
                 <p>Психологическое благополучие женщины в такие непростые периоды так же важно, как и физическое здоровье. Я помогаю найти внутреннюю опору, когда кажется, что земля уходит из-под ног, и учу доверять себе и конечно же своему телу.</p>
               </div>
-
-            </div>
-
-            <div class="lg:col-span-5 relative">
-              <div class="sticky top-24">
-                <div class="rounded-[2rem] overflow-hidden shadow-soft border-4 border-white">
-                  <img
-                    src="aboutme.JPG"
-                    alt="Айпери Сатыбалдиева"
-                    class="w-full object-cover aspect-[3/4]"
-                  />
-                </div>
-              </div>
             </div>
           </div>
 
-          <!-- Блок: family фото слева + образование справа -->
-          <div class="mt-14 grid gap-10 lg:grid-cols-2 lg:items-center reveal">
-            <!-- Фото слева -->
-            <div class="reveal-left">
-              <div class="rounded-[2rem] overflow-hidden shadow-soft border-4 border-white">
-                <img
-                  src="family.png"
-                  alt="Семья Айпери"
-                  class="w-full object-cover"
-                />
-              </div>
-            </div>
-
-            <!-- Образование справа -->
-            <div class="reveal-right bg-white rounded-3xl p-8 shadow-sm border border-purple-100">
+          <!-- Блок: два столбца образование -->
+          <div class="mt-10 grid gap-6 lg:grid-cols-2 reveal">
+            <!-- Образование -->
+            <div class="reveal-left bg-white rounded-3xl p-8 shadow-sm border border-purple-100">
               <h4 class="font-sans font-bold text-gray-900 text-lg mb-5">Образование</h4>
               <ul class="space-y-4 font-sans text-sm text-gray-700">
                 <li class="flex gap-3 items-start">
@@ -638,8 +622,11 @@
                   <span>МГИМО 2017–2018 гг. — Магистр права</span>
                 </li>
               </ul>
+            </div>
 
-              <h4 class="font-sans font-bold text-gray-900 text-lg mt-8 mb-5">Дополнительное образование</h4>
+            <!-- Дополнительное образование -->
+            <div class="reveal-right bg-white rounded-3xl p-8 shadow-sm border border-purple-100">
+              <h4 class="font-sans font-bold text-gray-900 text-lg mb-5">Дополнительное образование</h4>
               <ul class="space-y-4 font-sans text-sm text-gray-700">
                 <li class="flex gap-3 items-start">
                   <i class="fa-solid fa-certificate text-purple-400 mt-1 flex-shrink-0"></i>
@@ -664,7 +651,7 @@
         <path d="M0,90 C240,0 480,0 720,45 C960,90 1200,90 1440,45 L1440,0 L0,0 Z" fill="#faf5ff"></path>
       </svg>
 
-      <section id="work-with" class="bg-pastel-purple py-16 px-4 sm:px-6 reveal">
+      <section id="work-with" class="bg-pastel-purple py-6 px-4 sm:px-6 reveal">
         <div class="mx-auto max-w-6xl">
           <div class="text-center mb-14">
             <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl heading-line">С чем работаю</h2>
@@ -695,11 +682,18 @@
                 Горе после замершей беременности, выкидыша, неудачного протокола ЭКО или потери малыша в родах должно быть прожито правильно, в противном случае это будет влиять на дальнейшие успехи завести детей. Я сопровождаю в этом процессе проживания горя, чтобы оно не стало «застывшим». Помогу вам избавиться от чувства несправедливости, пустоты и страха, что это повторится снова. Это даст вам силы, внутренние ресурсы и психологическое разрешение на новую попытку и новую жизнь.
               </p>
             </div>
-            <div class="reveal card-accent rounded-3xl bg-white p-8 shadow-soft border border-purple-100 hover-lift md:col-span-2" data-delay="300">
-              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-3 text-center md:text-left">Материнство</h3>
+            <div class="reveal-left card-accent rounded-3xl bg-white p-8 shadow-soft border border-purple-100 hover-lift" data-delay="300">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-3">Материнство</h3>
               <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
                 Став матерью уже в прилично осознанном возрасте (в 32 года) я пережила на себе все сложности нового состояния - материнства. Ожидания от материнства могут не совпасть с реальностью, вы чувствуете вину или тревогу. Помогу вам адаптироваться в новой роли и получать радости от контакта с ребенком.<br><br>
                 Также женщины иногда чувствуют непринятие своего малыша, об этом не принято говорить никому. У этого есть свои объяснения: возможно у нее был негативный опыт детско-родительских отношений. И здесь очень важно найти, и проработать каждый болезненный момент.
+              </p>
+            </div>
+            <div class="reveal-right card-accent rounded-3xl bg-white p-8 shadow-soft border border-purple-100 hover-lift" data-delay="400">
+              <h3 class="font-sans font-bold text-xl text-gray-900 mb-4 border-b border-purple-100 pb-3">Планирование и беременость</h3>
+              <p class="font-sans text-sm text-gray-700 leading-relaxed text-justify">
+                Когда решение принято, но внутри много сомнений. Мы работаем с тем, чтобы укротить неуверенность: разобраться со страхами «смогу ли я?», «справлюсь ли?», «какой матерью я буду?»; найти внутреннюю опору: подготовить психику к переменам, чтобы войти в материнство из состояния ресурса, а не дефицита; снять напряжение: освободиться от давления ожиданий и вернуть себе право на спокойствие.<br><br>
+                Ваша беременность — это не просто девять месяцев ожидания, это начало ваших отношений. Я помогу вам выстроить связь с ребёнком уже сейчас: научиться слышать его импульсы и доверять своим ощущениям. Создать «пространство любви»: психологически освободить место для нового человека в вашей жизни. Наладить диалог «Мама — Дитя»: подготовить фундамент для лёгкой адаптации и глубокой привязанности после родов.<br><br>
               </p>
             </div>
           </div>
@@ -710,7 +704,7 @@
         <path d="M0,0 C240,90 480,90 720,45 C960,0 1200,0 1440,45 L1440,90 L0,90 Z" fill="#fdf2f8"></path>
       </svg>
 
-      <section id="pricing" class="bg-pastel-pink py-16 px-4 sm:px-6 reveal relative overflow-hidden">
+      <section id="pricing" class="bg-pastel-pink py-6 px-4 sm:px-6 reveal relative overflow-hidden">
         <span class="deco deco-star top-8 left-[5%]"   aria-hidden="true" style="--dur:6s;--delay:0s;--col:#c084fc;--sz:1rem;--op:0.4;">✦</span>
         <span class="deco deco-star top-8 right-[5%]"  aria-hidden="true" style="--dur:7s;--delay:1s;--col:#f9a8d4;--sz:0.85rem;--op:0.4;">✦</span>
         <span class="deco deco-spin bottom-6 right-8"  aria-hidden="true" style="--dur:15s;--col:#e879f9;--sz:2rem;--op:0.15;">✿</span>
@@ -787,7 +781,7 @@
         <path d="M0,90 C240,0 480,0 720,45 C960,90 1200,90 1440,45 L1440,0 L0,0 Z" fill="#faf5ff"></path>
       </svg>
 
-      <section id="faq" class="bg-pastel-purple py-16 px-4 sm:px-6 reveal">
+      <section id="faq" class="bg-pastel-purple py-6 px-4 sm:px-6 reveal">
         <div class="mx-auto max-w-4xl">
           <div class="text-center mb-14">
             <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl heading-line">Часто задаваемые вопросы</h2>
@@ -821,7 +815,7 @@
           </div>
         </div>
       </section>
-      <section id="certs" class="bg-pastel-purple pb-20 px-4 sm:px-6 reveal">
+      <section id="certs" class="bg-pastel-purple pb-6 px-4 sm:px-6 reveal">
         <div class="mx-auto max-w-6xl">
           <div class="text-center mb-12">
             <h2 class="font-display italic text-3xl font-semibold text-gray-900 sm:text-4xl heading-line">Дипломы и сертификаты</h2>
@@ -887,7 +881,7 @@
           </div>
         </div>
       </section>1
-      <section id="pre-contacts" class="bg-pastel-purple pb-16 px-4 sm:px-6 text-center reveal">
+      <section id="pre-contacts" class="bg-pastel-purple pb-4 px-4 sm:px-6 text-center reveal">
         <div class="bg-precontacts relative mx-auto max-w-3xl rounded-3xl p-8 sm:p-10 border border-pink-100 overflow-hidden">
           <img
             src="декор/image copy 2.png"
@@ -914,7 +908,7 @@
       <span class="deco deco-spin top-4 right-6"  aria-hidden="true" style="--dur:22s;--delay:4s;--col:#f9a8d4;--sz:1.5rem;--op:0.12;">✿</span>
       <span class="deco deco-twinkle top-10 left-1/3" aria-hidden="true" style="--dur:3s;--delay:1s;--col:#d8b4fe;--sz:0.8rem;">✦</span>
       <span class="deco deco-twinkle top-10 right-1/3" aria-hidden="true" style="--dur:4s;--delay:2s;--col:#fda4af;--sz:0.75rem;">✦</span>
-      <div class="mx-auto max-w-6xl px-4 py-12 text-gray-800 sm:px-6">
+      <div class="mx-auto max-w-6xl px-4 py-8 text-gray-800 sm:px-6">
         <div class="text-center mb-8">
           <h2 class="font-display italic text-3xl font-semibold text-gray-900">Контакты</h2>
           <p class="mt-2 font-sans text-sm text-gray-600">г. Бишкек, Кыргызстан</p>
@@ -1005,8 +999,32 @@
         if (img.complete && img.naturalWidth) process();
         else img.addEventListener('load', process, { once: true });
       }
+      function removeLightBg(img) {
+        const process = () => {
+          try {
+            const c = document.createElement('canvas');
+            c.width = img.naturalWidth; c.height = img.naturalHeight;
+            const ctx = c.getContext('2d', { willReadFrequently: true });
+            ctx.drawImage(img, 0, 0);
+            const id = ctx.getImageData(0, 0, c.width, c.height);
+            const d = id.data;
+            for (let i = 0; i < d.length; i += 4) {
+              const brightness = (d[i] + d[i+1] + d[i+2]) / 3;
+              if (brightness > 190) {
+                d[i+3] = Math.round(d[i+3] * (1 - (brightness - 190) / 65));
+              }
+            }
+            ctx.putImageData(id, 0, 0);
+            img.src = c.toDataURL('image/png');
+          } catch(_) {}
+        };
+        if (img.complete && img.naturalWidth) process();
+        else img.addEventListener('load', process, { once: true });
+      }
       const babyImg = document.getElementById('baby-sticker');
       if (babyImg) removeWhiteBg(babyImg);
+      const backAboutImg = document.getElementById('backaboutme-img');
+      if (backAboutImg) removeLightBg(backAboutImg);
 
       document.addEventListener('DOMContentLoaded', function() {
         const heroImg = document.getElementById("hero-photo");
