@@ -451,17 +451,16 @@
               </div>
             </div>
 
-            <!-- Ребёнок справа -->
-            <div class="hidden lg:flex lg:w-[30rem] xl:w-[36rem] flex-shrink-0 items-end justify-center reveal-right" data-delay="200">
-              <img
-                id="baby-sticker"
-                src="baby.png"
-                alt=""
-                aria-hidden="true"
-                class="w-full"
-                style="filter: drop-shadow(0 8px 28px rgba(168,85,247,0.18));"
-              />
-            </div>
+            <!-- Ребёнок справа (абсолютный, не влияет на текст) -->
+            <img
+              id="baby-sticker"
+              src="baby.png"
+              alt=""
+              aria-hidden="true"
+              class="hidden lg:block absolute bottom-0 right-0 w-[32rem] xl:w-[38rem] reveal-right"
+              style="filter: drop-shadow(0 8px 28px rgba(168,85,247,0.18));"
+              data-delay="200"
+            />
 
           </div>
         </div>
